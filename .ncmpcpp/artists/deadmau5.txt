@@ -1,0 +1,145 @@
+Read more about deadmau5 on Last.fm.
+    
+    
+User-contributed text is available under the Creative Commons By-SA License and may also be available under the GNU FDL.]]>
+
+Similar artists:
+
+ * Joel Zimmerman (http://www.last.fm/music/Melleefresh+vs.+Deadmau5)
+ * Melleefresh vs. Deadmau5 (http://www.last.fm/music/BSOD)
+ * BSOD (http://www.last.fm/music/Feed+Me)
+ * Feed Me (http://www.last.fm/music/Billy+Newton-Davis+vs.+Deadmau5)
+ * Billy Newton-Davis vs. Deadmau5 (http://www.last.fm/music/deadmau5+&amp;+Wolfgang+Gartner)
+ * deadmau5 & Wolfgang Gartner (http://www.last.fm/tag/house)
+ * house (http://www.last.fm/tag/electronic)
+ * electronic (http://www.last.fm/tag/progressive%20house)
+ * progressive house (http://www.last.fm/tag/electro)
+ * electro (http://www.last.fm/tag/minimal)
+ * minimal (l version="1.0" encoding="utf-8"?>
+<lfm status="ok">
+<artist>
+  <name>deadmau5</name>
+          <mbid>316f2aab-3477-4c62-bb08-eb04dcdcc18f</mbid>
+            <bandmembers>
+                    <member>
+                <name>Joel Zimmerman</name>
+                                            </member>
+            </bandmembers>
+        <url>http://www.last.fm/music/deadmau5</url>
+  <image size="small">http://userserve-ak.last.fm/serve/34/66078728.png</image>
+  <image size="medium">http://userserve-ak.last.fm/serve/64/66078728.png</image>
+  <image size="large">http://userserve-ak.last.fm/serve/126/66078728.png</image>
+  <image size="extralarge">http://userserve-ak.last.fm/serve/252/66078728.png</image>
+  <image size="mega">http://userserve-ak.last.fm/serve/_/66078728/deadmau5+xx.png</image>
+  <streamable>0</streamable>
+  <ontour>1</ontour>
+  <stats>
+    <listeners>1255435</listeners>
+    <playcount>38318483</playcount>
+      </stats>
+
+  <similar>
+	    <artist>
+	  <name>Melleefresh vs. Deadmau5</name>
+	  <url>http://www.last.fm/music/Melleefresh+vs.+Deadmau5</url>
+	  <image size="small">http://userserve-ak.last.fm/serve/34/40621249.jpg</image>
+	  <image size="medium">http://userserve-ak.last.fm/serve/64/40621249.jpg</image>
+	  <image size="large">http://userserve-ak.last.fm/serve/126/40621249.jpg</image>
+	  <image size="extralarge">http://userserve-ak.last.fm/serve/252/40621249.jpg</image>
+	  <image size="mega">http://userserve-ak.last.fm/serve/_/40621249/Melleefresh+vs+Deadmau5+MelleefreshDeadmau5freshmau5.jpg</image>
+	  
+	        	</artist>
+    <artist>
+	  <name>BSOD</name>
+	  <url>http://www.last.fm/music/BSOD</url>
+	  <image size="small">http://userserve-ak.last.fm/serve/34/27706639.jpg</image>
+	  <image size="medium">http://userserve-ak.last.fm/serve/64/27706639.jpg</image>
+	  <image size="large">http://userserve-ak.last.fm/serve/126/27706639.jpg</image>
+	  <image size="extralarge">http://userserve-ak.last.fm/serve/252/27706639.jpg</image>
+	  <image size="mega">http://userserve-ak.last.fm/serve/500/27706639/BSOD+691808700_l.jpg</image>
+	  
+	        	</artist>
+    <artist>
+	  <name>Feed Me</name>
+	  <url>http://www.last.fm/music/Feed+Me</url>
+	  <image size="small">http://userserve-ak.last.fm/serve/34/74060708.png</image>
+	  <image size="medium">http://userserve-ak.last.fm/serve/64/74060708.png</image>
+	  <image size="large">http://userserve-ak.last.fm/serve/126/74060708.png</image>
+	  <image size="extralarge">http://userserve-ak.last.fm/serve/252/74060708.png</image>
+	  <image size="mega">http://userserve-ak.last.fm/serve/500/74060708/Feed+Me.png</image>
+	  
+	        	</artist>
+    <artist>
+	  <name>Billy Newton-Davis vs. Deadmau5</name>
+	  <url>http://www.last.fm/music/Billy+Newton-Davis+vs.+Deadmau5</url>
+	  <image size="small">http://userserve-ak.last.fm/serve/34/40621187.jpg</image>
+	  <image size="medium">http://userserve-ak.last.fm/serve/64/40621187.jpg</image>
+	  <image size="large">http://userserve-ak.last.fm/serve/126/40621187.jpg</image>
+	  <image size="extralarge">http://userserve-ak.last.fm/serve/252/40621187.jpg</image>
+	  <image size="mega">http://userserve-ak.last.fm/serve/_/40621187/Billy+NewtonDavis+vs+Deadmau5+Deadmau5Untitled_Panorama1.jpg</image>
+	  
+	        	</artist>
+    <artist>
+	  <name>deadmau5 &amp; Wolfgang Gartner</name>
+	  <url>http://www.last.fm/music/deadmau5+&amp;+Wolfgang+Gartner</url>
+	  <image size="small">http://userserve-ak.last.fm/serve/34/51013815.png</image>
+	  <image size="medium">http://userserve-ak.last.fm/serve/64/51013815.png</image>
+	  <image size="large">http://userserve-ak.last.fm/serve/126/51013815.png</image>
+	  <image size="extralarge">http://userserve-ak.last.fm/serve/252/51013815.png</image>
+	  <image size="mega">http://userserve-ak.last.fm/serve/_/51013815/deadmau5++Wolfgang+Gartner+animal+rights.png</image>
+	  
+	        	</artist>
+  </similar>
+    <tags>
+        <tag>
+	  <name>house</name>
+	  <url>http://www.last.fm/tag/house</url>
+	</tag>
+        <tag>
+	  <name>electronic</name>
+	  <url>http://www.last.fm/tag/electronic</url>
+	</tag>
+        <tag>
+	  <name>progressive house</name>
+	  <url>http://www.last.fm/tag/progressive%20house</url>
+	</tag>
+        <tag>
+	  <name>electro</name>
+	  <url>http://www.last.fm/tag/electro</url>
+	</tag>
+        <tag>
+	  <name>minimal</name>
+	  <url>http://www.last.fm/tag/minimal</url>
+	</tag>
+      </tags>
+      <bio>
+        <links>
+        <link rel="original" href="http://www.last.fm/music/deadmau5/+wiki" />
+    </links>
+                                    <published>Mon, 31 Mar 2014 17:07:37 +0000</published>
+    <summary>
+        <![CDATA[        Born (January 5, 1981) and raised in Niagara Falls, Canada, Joel Zimmerman (aka &quot;deadmau5&quot;) has become one of the most sought-after artists on the electronic music scene in recent times. He is known for his highly entertaining live gigs, often performing wearing a large cartoon mouse head.  He first started his career as co-producer of the Niagara Falls radio show &quot;The pooooop to collaborate with many other artists and record labels around the world.  
+
+        <a href="http://www.last.fm/music/deadmau5">Read more about deadmau5 on Last.fm</a>.
+    ]]>
+    </summary>
+    <content>
+            <![CDATA[        Born (January 5, 1981) and raised in Niagara Falls, Canada, Joel Zimmerman (aka &quot;deadmau5&quot;) has become one of the most sought-after artists on the electronic music scene in recent times. He is known for his highly entertaining live gigs, often performing wearing a large cartoon mouse head.  He first started his career as co-producer of the Niagara Falls radio show &quot;The pooooop to collaborate with many other artists and record labels around the world.  
+
+        <a href="http://www.last.fm/music/deadmau5">Read more about deadmau5 on Last.fm</a>.
+    
+    
+User-contributed text is available under the Creative Commons By-SA License and may also be available under the GNU FDL.]]>
+    </content>
+            <placeformed>Niagara Falls, Canada</placeformed>                        <yearformed>2005</yearformed>
+            <formationlist>
+                    <formation>
+                <yearfrom>2005</yearfrom>
+                <yearto></yearto>
+            </formation>
+            </formationlist>
+      </bio>
+  </artist></lfm>
+)
+
+http://www.last.fm/music/deadmau5

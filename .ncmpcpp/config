@@ -1,0 +1,51 @@
+playlist_display_mode = "columns"
+user_interface = "alternative"
+
+##### colors definitions #####
+#
+colors_enabled = "yes"
+empty_tag_color = "blue"
+header_window_color = "magenta"
+volume_color = "lightred"
+state_line_color = "magenta"
+state_flags_color = "magenta"
+main_window_color = "cyan"
+color1 = "green"
+color2 = "blue"
+main_window_highlight_color = "cyan"
+progressbar_color = "yellow"
+statusbar_color = "blue"
+alternative_ui_separator_color = "blue"
+visualizer_color = "blue"
+active_window_border = "green"
+active_column_color = "magenta"
+allow_physical_files_deletion = "yes"
+allow_physical_directories_deletion = "yes"
+
+alternative_header_first_line_format = "$8$aqqu$/a$9 {$8%t$9}|{$1%f$9} $8$atqq$/a$9"
+alternative_header_second_line_format = "{{$b$4%a$/b$9}{ - $7%b$9}{ $2($b$4%y$/b$9$2)}}|{%D}"
+
+
+## Note: You can specify third character which will
+## be used to build 'empty' part of progressbar.
+##
+progressbar_look = "━━╸"
+
+
+
+
+song_status_format = "{{$4>>> $4%a$9 $6>>>$9 {$6%b$9} $1>>>$9 }$5{$1%t$9}}|{%f}"
+##song_list_format = " $8[%l] | $9 $7%a $8~ $3%b $8~ $4%t"
+song_list_format = "{$5%a > $9}{$3%t$9}|{$5%f$9}$R{$5 < %b > $9}{$8▕ %l$9}"
+song_columns_list_format = "(25f)[cyan]{a} (40)[green]{t} (30)[green]{b} (6f)[cyan]{l}"
+
+
+mpd_music_dir = "/home/andy/Music"
+mpd_host = "localhost"
+mpd_port = "6600"
+
+visualizer_fifo_path = "/tmp/mpd.fifo"
+visualizer_output_name = "my_fifo"
+visualizer_sync_interval = "1"
+visualizer_type = "wave"
+#visualizer_type = "spectrum"
