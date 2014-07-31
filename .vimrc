@@ -24,7 +24,7 @@ filetype indent on              " Enable indentation based on languages.
 """"""""""""""""""""""""""""
 " MacVim Configuration 
 """"""""""""""""""""""""""""
-if has("gui_macvim"):
+if has("gui_macvim")
     set background=dark
     colorscheme solarized
     set go-=T
