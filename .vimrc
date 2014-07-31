@@ -14,7 +14,7 @@ set laststatus=2                " Always show the status bar.
 set showcmd                     " Always show the current command.
 set wildmenu                    " Enable visual autocomplete for command menu.
 set wildignore=*.o,*~,*.pyc     " Ignore compiled files.
-set noswapfile		        	" Don't create swap files.
+set noswapfile		       	" Don't create swap files.
 set autochdir                   " Automatically change to the same directory as the file.
 filetype indent on              " Enable indentation based on languages.
 
