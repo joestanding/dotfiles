@@ -18,6 +18,7 @@ set noswapfile                  " Don't create swap files.
 set autochdir                   " Automatically change to the same directory as the file.
 set list!                       " Toggle list.
 set listchars=tab:>-            " Display tabs with arrows.
+set nowrap                      " Don't wrap lines.
 filetype indent on              " Enable indentation based on languages.
 
 
