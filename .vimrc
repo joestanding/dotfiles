@@ -6,7 +6,18 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
+
 Plugin 'gmarik/Vundle.vim'
+
+Plugin 'scrooloose/nerdtree'
+map <C-n> :NERDTreeToggle<CR>
+
+Plugin 'bling/vim-airline'
+let g:airline_powerline_fonts = 1
+let g:airline_theme='wombat'
+
+Plugin 'tpope/vim-fugitive'
+
 call vundle#end()            
 
 filetype plugin indent on
@@ -32,10 +43,18 @@ set autochdir                   " Automatically change to the same directory as 
 set list!                       " Toggle list.
 set listchars=tab:>-            " Display tabs with arrows.
 set nowrap                      " Don't wrap lines.
+set t_Co=256                    " Enable 256 colour mode
 filetype indent on              " Enable indentation based on languages.
 
 """"""""""""""""""""""""""""
-" MacVim Configuration 
+" Colour Groups            "
+""""""""""""""""""""""""""""
+highlight LineNr ctermfg=Yellow
+highlight CursorLineNr ctermfg=White
+highlight Statement ctermfg=Yellow
+
+""""""""""""""""""""""""""""
+" MacVim Configuration
 """"""""""""""""""""""""""""
 if has("gui_macvim")
     set background=dark
