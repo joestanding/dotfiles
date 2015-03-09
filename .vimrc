@@ -1,4 +1,17 @@
 """"""""""""""""""""""""""""
+" Vundle Plugin Manager    "
+""""""""""""""""""""""""""""
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+call vundle#end()            
+
+filetype plugin indent on
+
+""""""""""""""""""""""""""""
 " Generic Configuration 
 """"""""""""""""""""""""""""
 set nocompatible                " Apparently does nothing when in a .vimrc but just in case!
@@ -20,7 +33,6 @@ set list!                       " Toggle list.
 set listchars=tab:>-            " Display tabs with arrows.
 set nowrap                      " Don't wrap lines.
 filetype indent on              " Enable indentation based on languages.
-
 
 """"""""""""""""""""""""""""
 " MacVim Configuration 
