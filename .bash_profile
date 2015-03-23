@@ -1,12 +1,3 @@
-#############################################################################
-
-#### Bash Customisation Toolkit ####
-# bash-completion is required for git status
-
-if [ -f /etc/bash_completion ]; then
-. /etc/bash_completion
-fi
-
 function prompt {
 	# Colours
 	local BLACK="\[\033[0;30m\]"
