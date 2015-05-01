@@ -23,7 +23,7 @@ call vundle#end()
 filetype plugin indent on
 
 """"""""""""""""""""""""""""
-" Generic Configuration 
+" Generic Configuration    "
 """"""""""""""""""""""""""""
 set nocompatible                " Apparently does nothing when in a .vimrc but just in case!
 set expandtab                   " Pressing TAB will insert four spaces instead of a TAB.
@@ -40,15 +40,25 @@ set wildmenu                    " Enable visual autocomplete for command menu.
 set wildignore=*.o,*~,*.pyc     " Ignore compiled files.
 set noswapfile                  " Don't create swap files.
 set autochdir                   " Automatically change to the same directory as the file.
-"set list!                       " Toggle list.
+"set list!                      " Toggle list.
 set listchars=tab:>-            " Display tabs with arrows.
 set nowrap                      " Don't wrap lines.
 set t_Co=256                    " Enable 256 colour mode
 filetype indent on              " Enable indentation based on languages.
-command WQ wq
-command Wq wq
+
+""""""""""""""""""""""""""""
+" Key Bindings             "
+""""""""""""""""""""""""""""
+command WQ wq                   " Because vim is pedantic.
+command Wq wq                   " You know what I mean, vim :(
 command W w
 command Q q
+
+""""""""""""""""""""""""""""
+" Custom Filetypes         "
+""""""""""""""""""""""""""""
+au BufNewFile,BufRead *.less set filetype=less 
+
 """"""""""""""""""""""""""""
 " Colour Groups            "
 """"""""""""""""""""""""""""
