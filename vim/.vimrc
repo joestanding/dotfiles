@@ -7,15 +7,25 @@ set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
 
+" Vundle plug-in manager 
 Plugin 'gmarik/Vundle.vim'
 
+" LESS syntax highlighting
+Plugin 'groenewege/vim-less'
+
+" Jade syntax highlighting
+Plugin 'digitaltoad/vim-jade'
+
+" NERDTree file browser
 Plugin 'scrooloose/nerdtree'
 map <C-n> :NERDTreeToggle<CR>
 
+" Airline status bar
 Plugin 'bling/vim-airline'
 let g:airline_powerline_fonts = 1
 let g:airline_theme='wombat'
 
+" Fugitive git enhancements
 Plugin 'tpope/vim-fugitive'
 
 call vundle#end()            
@@ -53,11 +63,6 @@ command WQ wq                   " Because vim is pedantic.
 command Wq wq                   " You know what I mean, vim :(
 command W w
 command Q q
-
-""""""""""""""""""""""""""""
-" Custom Filetypes         "
-""""""""""""""""""""""""""""
-au BufNewFile,BufRead *.less set filetype=less 
 
 """"""""""""""""""""""""""""
 " Colour Groups            "
