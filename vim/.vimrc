@@ -10,6 +10,9 @@ call vundle#begin()
 " Vundle plug-in manager 
 Plugin 'gmarik/Vundle.vim'
 
+" Coffeescript syntax highlighting
+Plugin 'kchmck/vim-coffee-script'
+
 " LESS syntax highlighting
 Plugin 'groenewege/vim-less'
 
