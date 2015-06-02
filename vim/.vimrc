@@ -31,6 +31,16 @@ let g:airline_theme='wombat'
 " Fugitive git enhancements
 Plugin 'tpope/vim-fugitive'
 
+" Tagbar class outline viewer
+Plugin 'majutsushi/tagbar'
+nmap <F8> :TagbarToggle<CR>
+
+" CoffeeTags
+Plugin 'lukaszkorecki/CoffeeTags'
+
+" CSS for Tagbar
+Plugin 'mtscout6/vim-tagbar-css'
+
 call vundle#end()            
 
 filetype plugin indent on
