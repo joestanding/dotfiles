@@ -63,7 +63,6 @@ set wildmenu                    " Enable visual autocomplete for command menu.
 set wildignore=*.o,*~,*.pyc     " Ignore compiled files.
 set noswapfile                  " Don't create swap files.
 set autochdir                   " Automatically change to the same directory as the file.
-"set list!                      " Toggle list.
 set listchars=tab:>-            " Display tabs with arrows.
 set nowrap                      " Don't wrap lines.
 set t_Co=256                    " Enable 256 colour mode
@@ -78,11 +77,30 @@ command W w
 command Q q
 
 """"""""""""""""""""""""""""
+" Language Specific        "
+""""""""""""""""""""""""""""
+
+" CoffeeScript
+autocmd BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable
+autocmd Filetype coffee setlocal tabstop=2
+autocmd Filetype coffee setlocal softtabstop=2
+autocmd Filetype coffee setlocal shiftwidth=2
+
+" LESS
+autocmd Filetype less setlocal tabstop=2
+autocmd Filetype less setlocal softtabstop=2
+autocmd Filetype less setlocal shiftwidth=2     
+
+" Python
+autocmd Filetype python setlocal list!            " Display tabs clearly in Python
+
+""""""""""""""""""""""""""""
 " Colour Groups            "
 """"""""""""""""""""""""""""
 highlight LineNr ctermfg=Yellow
 highlight CursorLineNr ctermfg=White
 highlight Statement ctermfg=Yellow
+highlight Folded ctermbg=240
 
 """"""""""""""""""""""""""""
 " MacVim Configuration
