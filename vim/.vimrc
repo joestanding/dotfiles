@@ -86,6 +86,11 @@ autocmd Filetype coffee setlocal tabstop=2
 autocmd Filetype coffee setlocal softtabstop=2
 autocmd Filetype coffee setlocal shiftwidth=2
 
+" Jade
+autocmd Filetype jade setlocal tabstop=2
+autocmd Filetype jade setlocal softtabstop=2
+autocmd Filetype jade setlocal shiftwidth=2     
+
 " LESS
 autocmd Filetype less setlocal tabstop=2
 autocmd Filetype less setlocal softtabstop=2
@@ -100,7 +105,7 @@ autocmd Filetype python setlocal list!            " Display tabs clearly in Pyth
 highlight LineNr ctermfg=Yellow
 highlight CursorLineNr ctermfg=White
 highlight Statement ctermfg=Yellow
-highlight Folded ctermbg=240
+highlight Folded ctermbg=240 ctermfg=251
 
 """"""""""""""""""""""""""""
 " MacVim Configuration
