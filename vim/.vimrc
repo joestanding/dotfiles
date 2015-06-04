@@ -41,6 +41,9 @@ Plugin 'lukaszkorecki/CoffeeTags'
 " CSS for Tagbar
 Plugin 'mtscout6/vim-tagbar-css'
 
+" NERD Commenter
+Plugin 'scrooloose/nerdcommenter'
+
 call vundle#end()            
 
 filetype plugin indent on
@@ -65,6 +68,9 @@ set noswapfile                  " Don't create swap files.
 set autochdir                   " Automatically change to the same directory as the file.
 set listchars=tab:>-            " Display tabs with arrows.
 set nowrap                      " Don't wrap lines.
+set scrolloff=10                " Always show 10 lines above/below cursor when available.
+set sidescrolloff=20            " Always show 20 characters to the right or left of cursor.
+set incsearch                   " Search as you type.
 set t_Co=256                    " Enable 256 colour mode
 filetype indent on              " Enable indentation based on languages.
 
