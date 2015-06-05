@@ -44,6 +44,15 @@ Plugin 'mtscout6/vim-tagbar-css'
 " NERD Commenter
 Plugin 'scrooloose/nerdcommenter'
 
+" Indent Guides
+Plugin 'nathanaelkane/vim-indent-guides'
+let g:indent_guides_auto_colors = 0
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size  = 1
+
+" EasyMotion
+Plugin 'Lokaltog/vim-easymotion'
+
 call vundle#end()            
 
 filetype plugin indent on
@@ -73,6 +82,11 @@ set sidescrolloff=20            " Always show 20 characters to the right or left
 set incsearch                   " Search as you type.
 set t_Co=256                    " Enable 256 colour mode
 filetype indent on              " Enable indentation based on languages.
+
+""""""""""""""""""""""""""""
+" Autoexec                 "
+""""""""""""""""""""""""""""
+autocmd BufReadPre,FileReadPre * :IndentGuidesEnable 
 
 """"""""""""""""""""""""""""
 " Key Bindings             "
@@ -108,10 +122,13 @@ autocmd Filetype python setlocal list!            " Display tabs clearly in Pyth
 """"""""""""""""""""""""""""
 " Colour Groups            "
 """"""""""""""""""""""""""""
+colorscheme default
 highlight LineNr ctermfg=Yellow
 highlight CursorLineNr ctermfg=White
 highlight Statement ctermfg=Yellow
 highlight Folded ctermbg=240 ctermfg=251
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=238
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=240
 
 """"""""""""""""""""""""""""
 " MacVim Configuration
@@ -120,6 +137,5 @@ if has("gui_macvim")
     set background=dark
     colorscheme solarized
     set go-=T
-    call pathogen#infect()
 endif
 
