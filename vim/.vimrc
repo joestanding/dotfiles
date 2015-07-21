@@ -27,6 +27,8 @@ map <C-n> :NERDTreeToggle<CR>
 Plugin 'bling/vim-airline'
 let g:airline_powerline_fonts = 1
 let g:airline_theme='wombat'
+let g:airline#extensions#whitespace#enabled = 0
+let g:airline_section_z = '%t'
 
 " Fugitive git enhancements
 Plugin 'tpope/vim-fugitive'
@@ -95,6 +97,7 @@ command WQ wq                   " Because vim is pedantic.
 command Wq wq                   " You know what I mean, vim :(
 command W w
 command Q q
+let mapleader=","
 
 """"""""""""""""""""""""""""
 " Language Specific        "
@@ -115,6 +118,12 @@ autocmd Filetype jade setlocal shiftwidth=2
 autocmd Filetype less setlocal tabstop=2
 autocmd Filetype less setlocal softtabstop=2
 autocmd Filetype less setlocal shiftwidth=2     
+
+" YAML
+autocmd Filetype yaml setlocal tabstop=2
+autocmd Filetype yaml setlocal softtabstop=2
+autocmd Filetype yaml setlocal shiftwidth=2     
+
 
 " Python
 autocmd Filetype python setlocal list!            " Display tabs clearly in Python
