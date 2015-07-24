@@ -1,3 +1,7 @@
+# mkdir ~/.bash && cd ~/.bash && git clone git://github.com/jimeh/git-aware-prompt.git
+export GITAWAREPROMPT=~/.bash/git-aware-prompt
+source "${GITAWAREPROMPT}/main.sh"
+
 function prompt {
     # Colours
     local BLACK="\[\033[0;30m\]"
@@ -34,7 +38,7 @@ function prompt {
 
     # Version w/ date + time
     # export PS1="${BLACKBOLD}[${REDBOLD}$DATE_WMD ${WHITEBOLD}$TIME_HHMMSS${BLACKBOLD}]$GREENBOLD $USER@$HOST ${BLUEBOLD}${WD}${NEWLINE}${WHITEBOLD}${ROOTINDICATOR}${RESET} "
-    export PS1="${GREENBOLD}$USER@$HOST ${BLUEBOLD}${WD}${NEWLINE}${WHITEBOLD}${ROOTINDICATOR}${RESET} "
+    export PS1="${GREENBOLD}$USER@$HOST ${BLUEBOLD}${WD}${REDBOLD} \${git_branch}${NEWLINE}${WHITEBOLD}${ROOTINDICATOR}${RESET} "
 }
 prompt
 #######################################
