@@ -46,3 +46,4 @@ prompt
 alias root='su -l root'
 alias destroy='shred -n 10 -u -v -z'
 alias ..='cd ../'
+alias ll='ls -la'
