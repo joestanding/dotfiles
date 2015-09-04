@@ -2,7 +2,7 @@
 export GITAWAREPROMPT=~/.bash/git-aware-prompt
 source "${GITAWAREPROMPT}/main.sh"
 
-function prompt {
+function set_prompt {
     # Colours
     local BLACK="\[\033[0;30m\]"
     local BLACKBOLD="\[\033[1;30m\]"
@@ -38,12 +38,22 @@ function prompt {
 
     # Version w/ date + time
     # export PS1="${BLACKBOLD}[${REDBOLD}$DATE_WMD ${WHITEBOLD}$TIME_HHMMSS${BLACKBOLD}]$GREENBOLD $USER@$HOST ${BLUEBOLD}${WD}${NEWLINE}${WHITEBOLD}${ROOTINDICATOR}${RESET} "
-    export PS1="${GREENBOLD}$USER@$HOST ${BLUEBOLD}${WD}${REDBOLD} \${git_branch}${NEWLINE}${WHITEBOLD}${ROOTINDICATOR}${RESET} "
+
+    # If git-radar installed, display that, otherwise try git-aware-prompt
+    if hash git-radar 2>/dev/null; then
+        export PS1="${GREENBOLD}$USER@$HOST ${BLUEBOLD}${WD}${REDBOLD} \$(git-radar --bash --fetch)${NEWLINE}${WHITEBOLD}${ROOTINDICATOR}${RESET} "
+    else
+        export PS1="${GREENBOLD}$USER@$HOST ${BLUEBOLD}${WD}${REDBOLD} \${git_branch}${NEWLINE}${WHITEBOLD}${ROOTINDICATOR}${RESET} "
+    fi
 }
-prompt
+set_prompt
 #######################################
 
 alias root='su -l root'
 alias destroy='shred -n 10 -u -v -z'
 alias ..='cd ../'
 alias ll='ls -la'
+if hash truecrypt 2>/dev/null; then
+    alias truecrypt='/Applications/TrueCrypt.app/Contents/MacOS/Truecrypt --text'
+fi
+
