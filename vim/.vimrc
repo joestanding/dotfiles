@@ -26,9 +26,11 @@ map <C-n> :NERDTreeToggle<CR>
 " Airline status bar
 Plugin 'bling/vim-airline'
 let g:airline_powerline_fonts = 1
-let g:airline_theme='wombat'
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline_section_z = '%t'
+
+" Airline themes
+Plugin 'vim-airline/vim-airline-themes'
 
 " Fugitive git enhancements
 Plugin 'tpope/vim-fugitive'
