@@ -17,7 +17,7 @@ set $mod Mod1
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:DejaVu Sans Mono 8
+font pango:Terminus 8
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -46,7 +46,7 @@ bindsym $mod+d exec dmenu_run
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
-bindsym $mod+h focus right
+bindsym $mod+h focus left
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -55,10 +55,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+bindsym $mod+Shift+h move left
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -153,7 +153,7 @@ bindsym $mod+y mode "resize"
 # finds out, if available)
 bar {
 	position top
-	#mode hide
+    height 25
     modifier Mod1
     status_command i3blocks
 	colors {
@@ -163,7 +163,8 @@ bar {
 	}
 }
 
-bindsym $mod+r exec i3-input -F 'rename workspace to "%s"' -P 'Workspace name: ' 
+# Script to rename workspaces with a key-press
+bindsym $mod+r exec "~/scripts/i3/rename-workspace.sh"
 
 # Set border colours and so on
 client.focused #ff0000 #000000 #ffffff #ffffff #999999
@@ -175,7 +176,8 @@ gaps outer 7
 # Set the border width
 new_window pixel 2
 
-smart_borders on
+# Don't automatically focus on wherever the mouse is
 focus_follows_mouse no
 
-
+# I don't remember
+smart_borders on

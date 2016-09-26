@@ -1,4 +1,4 @@
-#include "/home/joe/git/base16-xresources/Xresources/base16-default-dark.xresources"
+#include "~/resources/base16-default-dark.xresources"
 URxvt*scrollBar:  false
 URxvt*termName:   screen-256color
 URxvt*font:       xft:Monospace:pixelsize=12

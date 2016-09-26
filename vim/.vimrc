@@ -11,7 +11,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " Coffeescript syntax highlighting
-Plugin 'kchmck/vim-coffee-script'
+"Plugin 'kchmck/vim-coffee-script'
 
 " LESS syntax highlighting
 Plugin 'groenewege/vim-less'

@@ -1,6 +1,6 @@
-# mkdir ~/.bash && cd ~/.bash && git clone git://github.com/jimeh/git-aware-prompt.git
-export GITAWAREPROMPT=~/.bash/git-aware-prompt
-source "${GITAWAREPROMPT}/main.sh"
+# ------------------------------------------------------ #
+#  Prompt and Colours
+# ------------------------------------------------------ #
 
 function set_prompt {
     # Colours
@@ -36,24 +36,23 @@ function set_prompt {
     local ROOTINDICATOR="\$"
     local TERMDEV="\l"
 
-    # Version w/ date + time
-    # export PS1="${BLACKBOLD}[${REDBOLD}$DATE_WMD ${WHITEBOLD}$TIME_HHMMSS${BLACKBOLD}]$GREENBOLD $USER@$HOST ${BLUEBOLD}${WD}${NEWLINE}${WHITEBOLD}${ROOTINDICATOR}${RESET} "
-
-    # If git-radar installed, display that, otherwise try git-aware-prompt
-    if hash git-radar 2>/dev/null; then
-        export PS1="${GREENBOLD}$USER@$HOST ${BLUEBOLD}${WD}${REDBOLD} \$(git-radar --bash --fetch)${NEWLINE}${WHITEBOLD}${ROOTINDICATOR}${RESET} "
+	if [[ $EUID -ne 0 ]]; then
+        USER_COLOUR=${GREEN}
     else
-        export PS1="${GREENBOLD}$USER@$HOST ${BLUEBOLD}${WD}${REDBOLD} \${git_branch}${NEWLINE}${WHITEBOLD}${ROOTINDICATOR}${RESET} "
+        USER_COLOUR=${RED}
     fi
+
+	export PS1="${BLUE}[${USER_COLOR}\u${WHITE}${BLUE}@${WHITE}\h${BLUE}]${PURPLE} \w\n${WHITE}\$\[$(tput sgr0)\] "
 }
 set_prompt
-#######################################
 
+# ------------------------------------------------------ #
+#  Aliases
+# ------------------------------------------------------ #
+
+alias ..='cd ../'
+alias ls='ls --color'
+alias ll='ls -la'
 alias root='su -l root'
 alias destroy='shred -n 10 -u -v -z'
-alias ..='cd ../'
-alias ll='ls -la'
-if hash truecrypt 2>/dev/null; then
-    alias truecrypt='/Applications/TrueCrypt.app/Contents/MacOS/Truecrypt --text'
-fi
 
