@@ -10,8 +10,6 @@ call vundle#begin()
 " Vundle plug-in manager 
 Plugin 'gmarik/Vundle.vim'
 
-" Coffeescript syntax highlighting
-"Plugin 'kchmck/vim-coffee-script'
 
 " LESS syntax highlighting
 Plugin 'groenewege/vim-less'
@@ -31,6 +29,8 @@ let g:airline_section_z = '%t'
 
 " Airline themes
 Plugin 'vim-airline/vim-airline-themes'
+let g:airline_theme = 'wombat'
+":AirlineTheme wombat<CR>
 
 " Fugitive git enhancements
 Plugin 'tpope/vim-fugitive'
@@ -38,9 +38,6 @@ Plugin 'tpope/vim-fugitive'
 " Tagbar class outline viewer
 Plugin 'majutsushi/tagbar'
 nmap <F8> :TagbarToggle<CR>
-
-" CoffeeTags
-Plugin 'lukaszkorecki/CoffeeTags'
 
 " CSS for Tagbar
 Plugin 'mtscout6/vim-tagbar-css'
@@ -104,12 +101,6 @@ let mapleader=","
 """"""""""""""""""""""""""""
 " Language Specific        "
 """"""""""""""""""""""""""""
-
-" CoffeeScript
-autocmd BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable
-autocmd Filetype coffee setlocal tabstop=2
-autocmd Filetype coffee setlocal softtabstop=2
-autocmd Filetype coffee setlocal shiftwidth=2
 
 " Jade
 autocmd Filetype jade setlocal tabstop=2
