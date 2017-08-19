@@ -1,4 +1,8 @@
 #include ".resources/base16-default-dark.xresources"
+
+Xft.dpi: 220
+rofi.dpi: 200
+
 URxvt*scrollBar:  false
 URxvt*termName:   screen-256color
 URxvt*font:       xft:Terminus:pixelsize=12
@@ -6,3 +10,4 @@ URxvt*boldFont:   xft:Terminus:pixelsize=12
 URxvt*internalBorder: 10
 !URxvt*transparent: true
 !URxvt*shading:   10
+
