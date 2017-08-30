@@ -148,3 +148,4 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 
 export EDITOR=vim
 export VISUAL=vim
+export TERM=xterm
