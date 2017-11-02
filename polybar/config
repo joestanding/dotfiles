@@ -1,18 +1,15 @@
 ;=====================================================
-;
-;   To learn more about how to configure Polybar
-;   go to https://github.com/jaagr/polybar
-;
+; ;   To learn more about how to configure Polybar ;   go to https://github.com/jaagr/polybar ;
 ;   The README contains alot of information
 ;
 ;=====================================================
 
 [colors]
-;background = ${xrdb:color0:#222}
-background = #222
-background-alt = #000
-;foreground = ${xrdb:color7:#222}
+background = #783e57
 foreground = #E4CDC1
+underline = #ba7892
+
+background-alt = #000
 foreground-alt = #555
 primary = #ffb52a
 secondary = #e60053
@@ -20,53 +17,39 @@ alert = #bd2c40
 
 [bar/example]
 
-dpi = 220
 ;monitor = ${env:MONITOR:HDMI-1}
+
+bottom = true
+dpi = 220
 width = 100%
 height = 40
-;offset-x = 1%
+offset-x = 1%
 ;offset-y = 10%
 ;radius = 6.0
 fixed-center = true
 underline-size = 7
-
-;background = ${colors.background}
-;foreground = ${colors.foreground}
-
 background = #00ff0000
 foreground = #d3d3d3
-
 line-size = 3
 line-color = #f00
-
-;border-top = 25
-border-size = 4
+;border-top = 10
+border-size = 0
 ;border-color = #00000000
-
 offset-y = -100
 padding-left = 2
 padding-right = 2
-
-;margin-top = 50
+margin-top = 50
 ;module-margin-left = 1
 module-margin-right = 2
-
-;font-0 = fixed:pixelsize=10;1
-;font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-;font-2 = siji:pixelsize=10;1
-
 font-0 = Terminus:size=22:weight=bold
 font-1 = FontAwesome:size=8
-
-modules-center = cpu memory date
-
+modules-center = i3 cpu memory filesystem eth date
 tray-position = right
 tray-padding = 2
 ;tray-transparent = true
 tray-background = #0063ff
-
 ;wm-restack = bspwm
-;wm-restack = i3
+wm-restack = i3
 
 ;override-redirect = true
 
@@ -78,6 +61,10 @@ tray-background = #0063ff
 
 cursor-click = pointer
 cursor-scroll = ns-resize
+
+;font-0 = fixed:pixelsize=10;1
+;font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+;font-2 = siji:pixelsize=10;1
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -103,14 +90,17 @@ label-indicator-underline = ${colors.secondary}
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [module/filesystem]
+format-mounted-background = #783E57
+format-mounted-foreground = #E4CDC1
+format-mounted-underline = #BA7892
+format-mounted-padding = 2
+
 type = internal/fs
 interval = 25
-format-background = #ff0000
-;format-underline = #6d8b94
 mount-0 = /
-label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
+;label-mounted = %mountpoint%%{F-}: %percentage_used%%
+label-mounted =  %percentage_used%%
 label-unmounted = %mountpoint% not mounted
-label-unmounted-foreground = ${colors.foreground-alt}
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -133,7 +123,13 @@ label-empty = %index%
 label-empty-foreground = ${colors.foreground-alt}
 label-empty-padding = 2
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 [module/i3]
+format-background = #783e57
+format-foreground = #E4CDC1
+format-underline = #ba7892
+
 type = internal/i3
 format = <label-state> <label-mode>
 index-sort = true
@@ -147,25 +143,28 @@ label-mode-foreground = #000
 label-mode-background = ${colors.primary}
 
 ; focused = Active workspace on focused monitor
-label-focused = %index%
-label-focused-background = ${module/bspwm.label-focused-background}
-label-focused-underline = ${module/bspwm.label-focused-underline}
-label-focused-padding = ${module/bspwm.label-focused-padding}
+label-focused =  %index% 
+label-focused-background = #ba7895 
+;label-focused-underline = ${module/bspwm.label-focused-underline}
+label-focused-padding = 1
 
 ; unfocused = Inactive workspace on any monitor
 label-unfocused = %index%
-label-unfocused-padding = ${module/bspwm.label-occupied-padding}
+label-unfocused-padding = 1
+label-unfocused-background = #783e57
 
 ; visible = Active workspace on unfocused monitor
 label-visible = %index%
-label-visible-background = ${self.label-focused-background}
-label-visible-underline = ${self.label-focused-underline}
-label-visible-padding = ${self.label-focused-padding}
+;label-visible-background = ${self.label-focused-background}
+;label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = 1
 
 ; urgent = Workspace with urgency hint set
 label-urgent = %index%
 label-urgent-background = ${module/bspwm.label-urgent-background}
-label-urgent-padding = ${module/bspwm.label-urgent-padding}
+label-urgent-padding = 1
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [module/mpd]
 type = internal/mpd
@@ -179,6 +178,8 @@ icon-next = 
 
 label-song-maxlen = 25
 label-song-ellipsis = true
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [module/xbacklight]
 type = internal/xbacklight
@@ -197,6 +198,8 @@ bar-empty = ─
 bar-empty-font = 2
 bar-empty-foreground = ${colors.foreground-alt}
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 [module/cpu]
 format-background = #783e57
 format-foreground = #E4CDC1
@@ -204,9 +207,11 @@ format-underline = #ba7892
 format-padding = 2
 type = internal/cpu
 interval = 2
-format-prefix = "CPU "
+format-prefix = " "
 ;format-underline = #f90000
 label = %percentage:2%%
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [module/memory]
 format-padding = 2
@@ -215,9 +220,11 @@ format-foreground = #E4CDC1
 format-underline = #ba7892
 type = internal/memory
 interval = 2
-format-prefix = "MEM "
+format-prefix = " "
 ;format-underline = #4bffdc
 label = %percentage_used%%
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [module/wlan]
 type = internal/network
@@ -241,15 +248,24 @@ ramp-signal-3 = 
 ramp-signal-4 = 
 ramp-signal-foreground = ${colors.foreground-alt}
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 [module/eth]
-format-background = #2E2C37
+format-background = #783e57
+format-foreground = #E4CDC1
+format-underline = #ba7892
+format-padding = 2
+
+;format-background = #2E2C37
 type = internal/network
-interface = 
+interface = eth0
 interval = 3.0
 
-format-connected-underline = #55aa55
-format-connected-prefix = " "
-format-connected-prefix-foreground = ${colors.foreground-alt}
+format-connected-padding = 2
+format-connected-underline = #ba7892
+format-connected-background = #783e57
+format-connected-prefix = " "
+format-connected-prefix-foreground = #E4CDC1
 label-connected = %local_ip%
 
 format-disconnected =
@@ -257,6 +273,8 @@ format-disconnected =
 ;format-disconnected-underline = ${self.format-connected-underline}
 ;label-disconnected = %ifname% disconnected
 ;label-disconnected-foreground = ${colors.foreground-alt}
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [module/date]
 format-background = #783e57
@@ -274,6 +292,8 @@ time-alt = %H:%M:%S
 format-prefix-foreground = #E4CDC1
 ;format-underline = #0a6cf5
 label = %date% %time%
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [module/volume]
 format-background = #2E2C37
@@ -304,6 +324,8 @@ bar-volume-empty = ─
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.foreground-alt}
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 [module/battery]
 type = internal/battery
 battery = BAT0
@@ -331,6 +353,8 @@ animation-charging-2 = 
 animation-charging-foreground = ${colors.foreground-alt}
 animation-charging-framerate = 750
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 [module/temperature]
 type = internal/temperature
 thermal-zone = 0
@@ -349,6 +373,8 @@ ramp-0 = 
 ramp-1 = 
 ramp-2 = 
 ramp-foreground = ${colors.foreground-alt}
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [module/powermenu]
 type = custom/menu
@@ -379,12 +405,16 @@ menu-2-0-exec = sudo poweroff
 menu-2-1 = cancel
 menu-2-1-exec = menu-open-0
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 [settings]
 screenchange-reload = true
 ;compositing-background = xor
 ;compositing-background = screen
 ;compositing-foreground = source
 ;compositing-border = over
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [global/wm]
 margin-top = 5
