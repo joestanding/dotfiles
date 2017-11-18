@@ -45,7 +45,9 @@ sudo pacman --noconfirm -U *.tar.xz
 
 # Official repo
 echo "[*] ${BLUE}Installing a bunch of packages that we want${RESET}"
-pacaur --noconfirm -S gtk3 gtkmm xorg xorg-xinit xf86-video-vmware open-vm-tools mlocate feh openssh compton 
+pacaur --noconfirm -S gtk3 gtkmm xorg xorg-xinit xf86-video-vmware open-vm-tools mlocate feh openssh compton python-pip python2-pip htop dhclient rofi
+pacaur --noconfirm -S gdb
+sudo chmod +s /usr/bin/gdb
 
 # AUR
 pacaur --noconfirm -S i3-gaps termite-git terminess-powerline-font-git ttf-font-awesome polybar-git open-vm-tools-dkms
@@ -54,4 +56,9 @@ pacaur --noconfirm -S i3-gaps termite-git terminess-powerline-font-git ttf-font-
 echo "[*] ${BLUE}Creating SSH key${RESET}"
 ssh-keygen -t rsa -b 4096 -C "joe@`hostname`"
 eval $(ssh-agent -s)
+
+# Set-up non-permissive iptables rules
+sudo iptables -P INPUT DROP
+sudo iptables -P FORWARD DROP
+sudo iptables -P OUTPUT ACCEPT
 

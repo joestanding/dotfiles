@@ -32,9 +32,9 @@ padding-left = 2
 padding-right = 2
 margin-top = 50
 module-margin-right = 2
-font-0 = Terminus:size=12:weight=bold
+font-0 = xos4 Terminess Powerline:size=12:weight=bold
 font-1 = FontAwesome:size=8
-modules-center = i3 username cpu memory filesystem battery updates eth  weather date
+modules-center = i3 username cpu memory filesystem battery debian-updates arch-updates eth weather date
 tray-position = right
 tray-padding = 2
 tray-background = #0063ff
@@ -81,7 +81,7 @@ exec = ~/.config/polybar/username
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-[module/updates]
+[module/debian-updates]
 type = custom/script
 interval = 60
 format = <label>
@@ -90,7 +90,23 @@ format-background = #783E57
 format-foreground = #E4CDC1
 format-underline = #BA7892
 format-padding = 2
-exec = ~/.config/polybar/updates
+exec = ~/.config/polybar/debian-updates
+exec-if = "grep -q 'Kali' /etc/lsb-release"
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[module/arch-updates]
+type = custom/script
+interval = 60
+format = <label>
+;format-prefix = " "
+format-background = #783E57
+format-foreground = #E4CDC1
+format-underline = #BA7892
+format-padding = 2
+exec = ~/.config/polybar/arch-updates
+exec-if = "grep -q 'Arch' /etc/lsb-release"
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

@@ -15,7 +15,10 @@ export LS_COLORS
 # Alias
 #-----------------------------
 alias pacman="pacman --color auto"
+alias pacaur="pacaur --color auto"
 alias ls="ls --color"
+alias gdb="gdb -q"
+alias reload-polybar="pkill -USR1 polybar"
 
 #------------------------------
 # Keybindings

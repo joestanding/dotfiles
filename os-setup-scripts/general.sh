@@ -29,3 +29,8 @@ echo "[*] Configuring gtk"
 mkdir -p ~/.config/gtk-3.0
 echo "vte-terminal { padding: 10px 10px 10px 10px; }" > ~/.config/gtk-3.0/gtk.css
 
+echo "[*] Installing gef for gdb"
+wget -q -O- https://github.com/hugsy/gef/raw/master/gef.sh | sh
+
+echo "[*] Setting i3 as the default window manager"
+echo 'exec i3' > ~/.xinitrc

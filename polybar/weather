@@ -17,5 +17,5 @@ try:
         print("{}, {} °{}".format(CURRENT, TEMP, UNIT_KEY))
     else:
         print(":(")
-except (ValueError, IOError):
+except Exception as e:
     print(":(")

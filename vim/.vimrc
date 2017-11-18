@@ -7,9 +7,11 @@ set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
 
+" EasyMotion
+Plugin 'Lokaltog/vim-easymotion'
+
 " Vundle plug-in manager 
 Plugin 'gmarik/Vundle.vim'
-
 
 " LESS syntax highlighting
 Plugin 'groenewege/vim-less'
@@ -29,7 +31,6 @@ let g:airline#extensions#whitespace#enabled = 0
 " Airline themes
 Plugin 'vim-airline/vim-airline-themes'
 let g:airline_theme = 'wombat'
-":AirlineTheme wombat<CR>
 
 " Fugitive git enhancements
 Plugin 'tpope/vim-fugitive'
@@ -49,9 +50,6 @@ Plugin 'nathanaelkane/vim-indent-guides'
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size  = 1
-
-" EasyMotion
-Plugin 'Lokaltog/vim-easymotion'
 
 call vundle#end()            
 
@@ -116,7 +114,6 @@ autocmd Filetype yaml setlocal tabstop=2
 autocmd Filetype yaml setlocal softtabstop=2
 autocmd Filetype yaml setlocal shiftwidth=2     
 
-
 " Python
 autocmd Filetype python setlocal list!            " Display tabs clearly in Python
 
@@ -130,13 +127,3 @@ highlight Statement ctermfg=Yellow
 highlight Folded ctermbg=240 ctermfg=251
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=238
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=240
-
-""""""""""""""""""""""""""""
-" MacVim Configuration
-""""""""""""""""""""""""""""
-if has("gui_macvim")
-    set background=dark
-    colorscheme solarized
-    set go-=T
-endif
-
