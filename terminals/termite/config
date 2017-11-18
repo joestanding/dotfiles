@@ -28,7 +28,7 @@ color15 = #f5f5f5
 [options]
 allow_bold    = true
 font = xos4 Terminess Powerline 9
-clickable_url = true
+clickable_url = false
 cursor_blink  = system
 cursor_shape  = block
 audible_bell  = false

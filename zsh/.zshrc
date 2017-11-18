@@ -37,12 +37,6 @@ bindkey '^[[D' backward-char
 bindkey '^[[B' down-line-or-search
 bindkey '^[[C' forward-char 
 bindkey '^R' history-incremental-search-backward
-## for rxvt
-#bindkey "\e[8~" end-of-line
-#bindkey "\e[7~" beginning-of-line
-## for gnome-terminal
-#bindkey "\eOH" beginning-of-line
-#bindkey "\eOF" end-of-line
 
 #------------------------------
 # Comp stuff

@@ -30,9 +30,10 @@ echo "[*] Installing a bunch of packages that we want"
 pacaur --noconfirm -S gtk3 gtkmm xorg xorg-xinit xf86-video-vmware open-vm-tools open-vm-tools-dkms mlocate feh openssh compton polybar
 
 # AUR
-pacaur --noconfirm -S i3-gaps termite-git terminess-powerline-font-git
+pacaur --noconfirm -S i3-gaps termite-git terminess-powerline-font-git ttf-font-awesome
 
 # Create SSH key
+echo "[*] Creating SSH key"
 ssh-keygen -t rsa -b 4096 -C "joe@`hostname`"
 eval $(ssh-agent -s)
 
