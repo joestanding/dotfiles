@@ -27,7 +27,7 @@ sudo pacman --noconfirm -U *.tar.xz
 
 # Official repo
 echo "[*] Installing a bunch of packages that we want"
-pacaur --noconfirm -S gtk3 gtkmm xorg xorg-xinit xf86-video-vmware open-vm-tools open-vm-tools-dkms mlocate feh openssh
+pacaur --noconfirm -S gtk3 gtkmm xorg xorg-xinit xf86-video-vmware open-vm-tools open-vm-tools-dkms mlocate feh openssh compton
 
 # AUR
 pacaur --noconfirm -S i3-gaps termite-git terminess-powerline-font-git

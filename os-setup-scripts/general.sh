@@ -10,7 +10,7 @@ cp ~/git/dotfiles/i3/config ~/.config/i3/config
 
 echo "[*] Configuring Termite"
 mkdir -p ~/.config/termite
-cp ~/git/dotfiles/termite/config ~/.config/termite/config
+cp ~/git/dotfiles/terminals/termite/config ~/.config/termite/config
 
 echo "[*] Configuring Polybar"
 mkdir -p ~/.config/polybar
@@ -22,5 +22,6 @@ cp ~/git/dotfiles/compton/compton.conf ~/.config/compton.conf
 echo "[*] Copying resources"
 cp -R ~/git/dotfiles/resources ~/.resources
 
-
+echo "[*] Configuring zsh"
+cp ~/git/dotfiles/zsh/.zshrc ~/
 
