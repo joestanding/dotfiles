@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "[*] Updating Pacman repositories and performing a full upgrade"
+sudo pacman --noconfirm -Syu
 echo "[*] Retrieving GPG key for Cower author"
 gpg --recv-keys --keyserver hkp://pgp.mit.edu 1EB2638FF56C0C53
 echo "[*] Installing some packages (wget, git, vim) we might need"
@@ -12,7 +14,7 @@ cd /tmp
 tar xzvf cower.tar.gz
 cd cower
 makepkg -s
-sudo pacman -U *.tar.xz
+sudo pacman --noconfirm -U *.tar.xz
 
 echo "[*] Retrieving Pacaur from the AUR"
 wget https://aur.archlinux.org/cgit/aur.git/snapshot/pacaur.tar.gz -O /tmp/pacaur.tar.gz
@@ -21,7 +23,7 @@ cd /tmp
 tar xzvf pacaur.tar.gz
 cd pacaur
 makepkg -s
-sudo pacman -U *.tar.xz
+sudo pacman --noconfirm -U *.tar.xz
 
 # Official repo
 echo "[*] Installing a bunch of packages that we want"
