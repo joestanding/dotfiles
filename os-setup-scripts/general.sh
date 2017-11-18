@@ -25,3 +25,7 @@ cp -R ~/git/dotfiles/resources ~/.resources
 echo "[*] Configuring zsh"
 cp ~/git/dotfiles/zsh/.zshrc ~/
 
+echo "[*] Configuring gtk"
+mkdir -p ~/.config/gtk-3.0
+echo "vte-terminal { padding: 10px 10px 10px 10px; }" > ~/.config/gtk-3.0/gtk.css
+
