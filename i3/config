@@ -11,32 +11,10 @@ set $mod Mod1
 #font pango:Terminus 8     # Terminus - Low DPI
 font pango:Inconsolata 16  # Inconsolata - High DPI
 
-
-# Bar ===============================================================================
-
-#bar {
-#    font pango:PragmataPro Mono Bold 18
-#    #font pango:Terminus 18
-#    #font pango:Inconsolata 16
-#	position top
-#    #height 26 # Low DPI
-#    height 48 # High DPI
-#    modifier Mod1
-#    status_command i3blocks
-#    mode hide
-#	colors {
-#        #background #181818
-#        background #2E2C37
-#        statusline #f5f5f5FF
-#        #separator #505050
-#        separator #181818
-#	}
-#}
-
 # Binds =============================================================================
 
 # Script to rename workspaces with a key-press
-bindsym $mod+r exec "~/.resources/i3/rename-workspace.sh"
+bindsym $mod+r exec "~/.resources/rename-i3-workspace.sh"
 
 # Borders  ==========================================================================
 
@@ -181,4 +159,4 @@ mode "resize" {
 bindsym $mod+y mode "resize"
 
 exec vmware-user-suid-wrapper
-exec "~/.resources/xinit.sh"
+exec "~/.resources/i3-init.sh"
