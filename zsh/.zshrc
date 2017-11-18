@@ -166,7 +166,15 @@ if [ -f $1 ] ; then
 #-------------------------------
 # Plugins
 #-------------------------------
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+ZSHDIR1="/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+ZSHDIR2="/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+if [ -e "$ZSHDIR1" ]; then
+    source $ZSHDIR1
+fi
+if [ -e "$ZSHDIR2" ]; then
+    source $ZSHDIR2
+fi
+
 
 export EDITOR=vim
 export VISUAL=vim
