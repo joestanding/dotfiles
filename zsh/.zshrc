@@ -12,13 +12,57 @@ LS_COLORS='rs=0:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;3
 export LS_COLORS
 
 #-----------------------------
-# Alias
+# Aliases and Useful Functions
 #-----------------------------
 alias pacman="pacman --color auto"
 alias pacaur="pacaur --color auto"
+alias sd="sudo shutdown now"
+alias gc="git clone"
+alias gp="git pull"
 alias ls="ls --color"
 alias gdb="gdb -q"
 alias reload-polybar="pkill -USR1 polybar"
+alias http="python2 -m SimpleHTTPServer"
+alias ..="cd ../"
+
+if grep -q "Kali" /etc/lsb-release
+then
+    alias s="sudo apt-get install"
+    alias ss="apt-cache search"
+fi
+
+if grep -q "Arch" /etc/lsb-release
+then
+    alias ss="pacaur -Ss"
+    alias s="pacaur -S"
+fi
+
+
+ifdu () {
+    sudo ifdown $1
+    sudo ifup $1
+}
+
+extract () {
+if [ -f $1 ] ; then
+  case $1 in
+    *.tar.bz2)   tar xjf $1     ;;
+    *.tar.gz)    tar xzf $1     ;;
+    *.bz2)       bunzip2 $1     ;;
+    *.rar)       unrar e $1     ;;
+    *.gz)        gunzip $1      ;;
+    *.tar)       tar xf $1      ;;
+    *.tbz2)      tar xjf $1     ;;
+    *.tgz)       tar xzf $1     ;;
+    *.zip)       unzip $1       ;;
+    *.Z)         uncompress $1  ;;
+    *.7z)        7z x $1        ;;
+    *)     echo "'$1' cannot be extracted via extract()" ;;
+     esac
+ else
+     echo "'$1' is not a valid file"
+ fi
+}
 
 #------------------------------
 # Keybindings
@@ -139,26 +183,7 @@ setprompt() {
 }
 setprompt
 
-extract () {
-if [ -f $1 ] ; then
-  case $1 in
-    *.tar.bz2)   tar xjf $1     ;;
-    *.tar.gz)    tar xzf $1     ;;
-    *.bz2)       bunzip2 $1     ;;
-    *.rar)       unrar e $1     ;;
-    *.gz)        gunzip $1      ;;
-    *.tar)       tar xf $1      ;;
-    *.tbz2)      tar xjf $1     ;;
-    *.tgz)       tar xzf $1     ;;
-    *.zip)       unzip $1       ;;
-    *.Z)         uncompress $1  ;;
-    *.7z)        7z x $1        ;;
-    *)     echo "'$1' cannot be extracted via extract()" ;;
-     esac
- else
-     echo "'$1' is not a valid file"
- fi
-}
+
 
 #-------------------------------
 # Plugins
