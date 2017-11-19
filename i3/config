@@ -29,7 +29,7 @@ new_window pixel 1
 
 ## Set the gaps around windows
 gaps inner 20 # Low DPI
-gaps outer 14 # Low DPI
+gaps outer 9 # Low DPI
 #gaps inner 30 # High DPI
 #gaps outer 25 # High DPI
 

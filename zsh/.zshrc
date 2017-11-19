@@ -29,12 +29,14 @@ if grep -q "Kali" /etc/lsb-release
 then
     alias s="sudo apt-get install"
     alias ss="apt-cache search"
+    alias upgrade="sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade && sudo apt-get autoremove"
 fi
 
 if grep -q "Arch" /etc/lsb-release
 then
     alias ss="pacaur -Ss"
     alias s="pacaur -S"
+    alias upgrade="pacaur -Syu"
 fi
 
 
