@@ -25,20 +25,27 @@ alias reload-polybar="pkill -USR1 polybar"
 alias http="python2 -m SimpleHTTPServer"
 alias ..="cd ../"
 
-if grep -q "Kali" /etc/lsb-release
-then
-    alias s="sudo apt-get install"
-    alias ss="apt-cache search"
+set_debian_aliases () {
+	alias i="sudo apt-get install"
+    alias s="apt-cache search --names-only"
     alias upgrade="sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade && sudo apt-get autoremove"
+}
+
+set_arch_aliases() {
+    alias i="pacaur -Ss"
+	alias s="pacaur -S"
+	alias upgrade="pacaur -Syu"
+}
+
+if [ -e "/etc/lsb-release" ]; then
+	if grep -qE "Kali|Debian" /etc/lsb-release; then set_debian_aliases; fi
+    if grep -q "Arch" /etc/lsb-release; then set_arch_aliases; fi
 fi
 
-if grep -q "Arch" /etc/lsb-release
-then
-    alias ss="pacaur -Ss"
-    alias s="pacaur -S"
-    alias upgrade="pacaur -Syu"
+if [ -e "/etc/os-release" ]; then
+	if grep -qE "Kali|Debian" /etc/os-release; then set_debian_aliases; fi
+    if grep -q "Arch" /etc/os-release; then set_arch_aliases; fi
 fi
-
 
 ifdu () {
     sudo ifdown $1
