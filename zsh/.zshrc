@@ -33,8 +33,8 @@ set_debian_aliases () {
 }
 
 set_arch_aliases() {
-    alias i="pacaur -Ss"
-	alias s="pacaur -S"
+    alias s="pacaur -Ss"
+	alias i="pacaur -S"
 	alias upgrade="pacaur -Syu"
 }
 
