@@ -32,7 +32,7 @@ padding-left = 2
 padding-right = 2
 margin-top = 50
 module-margin-right = 2
-font-0 = xos4 Terminess Powerline:size=12:weight=bold
+font-0 = Terminus:size=12:weight=bold
 font-1 = FontAwesome:size=8
 modules-center = i3 username cpu memory filesystem battery debian-updates arch-updates eth weather date
 tray-position = right
@@ -170,18 +170,18 @@ label-focused-background = #ba7895
 label-focused-padding = 1
 
 ; unfocused = Inactive workspace on any monitor
-label-unfocused = %index%
+label-unfocused = %name%
 label-unfocused-padding = 1
 label-unfocused-background = #783e57
 
 ; visible = Active workspace on unfocused monitor
-label-visible = %index%
+label-visible = %name%
 ;label-visible-background = ${self.label-focused-background}
 ;label-visible-underline = ${self.label-focused-underline}
 label-visible-padding = 1
 
 ; urgent = Workspace with urgency hint set
-label-urgent = %index%
+label-urgent = %name%
 label-urgent-padding = 1
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
