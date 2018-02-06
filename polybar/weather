@@ -1,10 +1,10 @@
-#!/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 import requests
 
 CITY = "2656192"
-API_KEY = ""
+API_KEY = "55773ecd534deed83675063719d57459"
 UNITS = "Metric"
 UNIT_KEY = "C"
 
@@ -16,6 +16,6 @@ try:
         TEMP = int(float(REQ.json()["main"]["temp"]))
         print("{}, {} °{}".format(CURRENT, TEMP, UNIT_KEY))
     else:
-        print(":(")
+        print("Error: " + str(REQ.status_code))
 except Exception as e:
     print(":(")

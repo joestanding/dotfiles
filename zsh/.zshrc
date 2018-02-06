@@ -30,6 +30,7 @@ set_debian_aliases () {
 	alias i="sudo apt-get install"
     alias s="apt-cache search --names-only"
     alias upgrade="sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade && sudo apt-get autoremove"
+    alias update="upgrade"
 }
 
 set_arch_aliases() {
