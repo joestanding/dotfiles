@@ -15,6 +15,21 @@ import os
 from colorama import Fore, Back, Style
 
 # =================================================================================== #
+# Configuration                                                                       #
+# =================================================================================== #
+
+class Configuration:
+    progress_bar_width = 50
+    filesystems = [ '/dev/sda1' ]
+    services = {
+        'Apache' : 'apache2',
+        'MySQL' : 'mysql',
+        'SSH' : 'ssh',
+        'Postgres': 'postgresql',
+        'Nginx': 'nginx'
+    }
+
+# =================================================================================== #
 
 class Maths:
     def percentile(a, b):
@@ -141,18 +156,6 @@ def p(colour, message):
 def main():
     subprocess.call('clear')
 
-    # ============================================================= #
-    # Configuration                                                 #
-    # ============================================================= #
-    bar_width = 50
-    services = {
-        'Apache' : 'apache2',
-        'MySQL' : 'mysql',
-        'SSH' : 'ssh',
-        'Postgres': 'postgresql'
-    }
-    filesystems = [ '/dev/sda1' ]
-   
     UI.banner()
     
     # ============================================================= #
@@ -186,7 +189,7 @@ def main():
 
     p(Fore.YELLOW, "Memory:")
     memory_stats = psutil.virtual_memory()
-    UI.progress_bar(bar_width, int(memory_stats.percent),
+    UI.progress_bar(Configuration.progress_bar_width, int(memory_stats.percent),
                     UI.friendly_bytes(memory_stats.total),
                     UI.friendly_bytes(memory_stats.used),
                     UI.friendly_bytes(memory_stats.free))
@@ -198,10 +201,10 @@ def main():
 
     p(Fore.YELLOW, "Storage:")
     for partition in psutil.disk_partitions():
-        if partition.device in filesystems:
+        if partition.device in Configuration.filesystems:
             partition_stats = psutil.disk_usage(partition.mountpoint)
-            print("  " + Fore.MAGENTA + "/dev/sda1 " + Style.RESET_ALL + Style.RESET_ALL)
-            UI.progress_bar(bar_width, int(partition_stats.percent),
+            print("  " + Fore.MAGENTA + partition.device + Style.RESET_ALL + Style.RESET_ALL)
+            UI.progress_bar(Configuration.progress_bar_width, int(partition_stats.percent),
                     UI.friendly_bytes(partition_stats.total),
                     UI.friendly_bytes(partition_stats.used),
                     UI.friendly_bytes(partition_stats.free))
@@ -214,10 +217,10 @@ def main():
     p(Fore.YELLOW, "Services:")
     right = False
     longest_service = 0
-    for k, v in services.items():
+    for k, v in Configuration.services.items():
         if len(k) > longest_service:
             longest_service = len(k)
-    for friendly_name, name in services.items():
+    for friendly_name, name in Configuration.services.items():
         line = "  {friendly_name:<{rename_me}}  {status:>12} ".format(rename_me=longest_service, friendly_name=friendly_name, status=UI.status(Services.check_status(name)))
         if not right:
             print(line, end="")
