@@ -16,20 +16,22 @@ font-0              = Terminus:size=12
 font-1              = FontAwesome:size=8
 
 bottom              = true
+underline-size      = 2
+overline-size       = 0
+
 fixed-center        = true
 
 width               = 100%
 height              = 33
 
 module-margin-right = 3
-modules-center      = i3 username cpu memory filesystem battery debian-updates arch-updates eth weather date
+modules-center      = i3 username cpu memory filesystem battery debian-updates arch-updates eth0 eth1 tap0 weather date
 
 wm-restack          = i3
 
 cursor-click        = pointer
 cursor-scroll       = ns-resize
 
-underline-size      = 1
 
 #border-size        = 10 ; Set this if you want some spacing around the bar.
 
@@ -48,12 +50,13 @@ margin-bottom       = 5
 
 [module/weather]
 type                = custom/script
-interval            = 10
+interval            = 300
 exec                = python2 ~/.config/polybar/weather
 format              = <label>
 format-background   = ${colors.background}
 format-foreground   = ${colors.foreground}
-format-underline    = ${colors.icon}
+format-underline    = ${colors.underline}
+format-overline     = ${colors.underline}
 format-padding      = 2
 format-prefix       = " "
 format-prefix-foreground = ${colors.icon}
@@ -68,6 +71,7 @@ format              = <label>
 format-background   = ${colors.background}
 format-foreground   = ${colors.foreground}
 format-underline    = ${colors.underline}
+format-overline     = ${colors.underline}
 format-padding      = 2
 format-prefix       = " "
 format-prefix-foreground = ${colors.icon}
@@ -83,6 +87,7 @@ format              = <label>
 format-background   = ${colors.background}
 format-foreground   = ${colors.foreground}
 format-underline    = ${colors.underline}
+format-overline     = ${colors.underline}
 format-padding      = 2
 format-prefix       = " "
 format-prefix-foreground = ${colors.icon}
@@ -99,6 +104,7 @@ format              = <label>
 format-background   = ${colors.background}
 format-foreground   = ${colors.foreground}
 format-underline    = ${colors.underline}
+format-overline     = ${colors.underline}
 format-padding      = 2
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -107,12 +113,14 @@ format-padding      = 2
 format-mounted-background = ${colors.background}
 format-mounted-foreground = ${colors.foreground}
 format-mounted-underline = ${colors.underline}
+format-mounted-overline = ${colors.underline}
 format-mounted-padding = 2
 
 type = internal/fs
 interval = 25
 mount-0 = /
 ;label-mounted = %mountpoint%%{F-}: %percentage_used%%
+format-overline     = ${colors.underline}
 format = <label>
 format-mounted-prefix = " "
 format-mounted-prefix-foreground = ${colors.icon}
@@ -125,6 +133,7 @@ label-unmounted = %mountpoint% not mounted
 format-background = ${colors.background}
 format-foreground = ${colors.foreground}
 format-underline = ${colors.underline}
+format-overline     = ${colors.underline}
 
 type = internal/i3
 format = <label-state> <label-mode>
@@ -166,6 +175,7 @@ label-urgent-padding = 1
 format-background = ${colors.background}
 format-foreground = ${colors.foreground}
 format-underline = ${colors.underline}
+format-overline     = ${colors.underline}
 format-padding = 2
 type = internal/cpu
 interval = 2
@@ -181,6 +191,7 @@ format-background = ${colors.background}
 format-foreground = ${colors.foreground}
 format-prefix-foreground = ${colors.icon}
 format-underline = ${colors.underline}
+format-overline     = ${colors.underline}
 type = internal/memory
 interval = 2
 format-prefix = " "
@@ -211,30 +222,60 @@ ramp-signal-foreground = ${colors.foreground}
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-[module/eth]
+[module/eth0]
 format-background = ${colors.background}
 format-foreground = ${colors.foreground}
 format-underline = ${colors.underline}
+format-overline     = ${colors.underline}
 format-padding = 2
-
-;format-background = #2E2C37
 type = internal/network
 interface = eth0
 interval = 3.0
-
 format-connected-padding = 2
 format-connected-underline = ${colors.underline}
+format-connected-overline = ${colors.underline}
 format-connected-background = ${colors.background}
 format-connected-foreground = ${colors.foreground}
-format-connected-prefix = " "
+format-connected-prefix = " eth0 "
 format-connected-prefix-foreground = ${colors.icon}
 label-connected = %local_ip%
-
 format-disconnected =
-;format-disconnected = <label-disconnected>
-;format-disconnected-underline = ${self.format-connected-underline}
-;label-disconnected = %ifname% disconnected
-;label-disconnected-foreground = ${colors.foreground-alt}
+[module/eth1]
+format-background = ${colors.background}
+format-foreground = ${colors.foreground}
+format-underline = ${colors.underline}
+format-overline     = ${colors.underline}
+format-padding = 2
+type = internal/network
+interface = eth1
+interval = 3.0
+format-connected-padding = 2
+format-connected-underline = ${colors.underline}
+format-connected-overline = ${colors.underline}
+format-connected-background = ${colors.background}
+format-connected-foreground = ${colors.foreground}
+format-connected-prefix = " eth1 "
+format-connected-prefix-foreground = ${colors.icon}
+label-connected = %local_ip%
+format-disconnected =
+[module/tap0]
+format-background = ${colors.background}
+format-foreground = ${colors.foreground}
+format-underline = ${colors.underline}
+format-overline     = ${colors.underline}
+format-padding = 2
+type = internal/network
+interface = tap0
+interval = 3.0
+format-connected-padding = 2
+format-connected-underline = ${colors.underline}
+format-connected-overline = ${colors.underline}
+format-connected-background = ${colors.background}
+format-connected-foreground = ${colors.foreground}
+format-connected-prefix = " vpn "
+format-connected-prefix-foreground = ${colors.icon}
+label-connected = %local_ip%
+format-disconnected =
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -242,6 +283,7 @@ format-disconnected =
 format-background = ${colors.background}
 format-foreground = ${colors.foreground}
 format-underline = ${colors.underline}
+format-overline     = ${colors.underline}
 format-prefix = " "
 format-prefix-foreground = ${colors.icon}
 format-padding = 2
@@ -250,7 +292,7 @@ interval = 1
 date = "%A %d %B %Y"
 date-alt = " %Y-%m-%d"
 time = %I:%M:%S %p
-time-alt = %I:%M:%S
+time-alt = %H:%M:%S
 label = %date% %time%
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -291,34 +333,50 @@ type = internal/battery
 battery = BAT2
 adapter = ACAD
 full-at = 98
+interval = 5
 
-format-charging-prefix = " "
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+
+format-charging = <animation-charging> <label-charging>
+format-discharging = <ramp-capacity> <label-discharging>
+format-full = <ramp-capacity> <label-full>
+
+format-charging-prefix-foreground = ${colors.icon}
 format-charging-background = ${colors.background}
 format-charging-foreground = ${colors.foreground}
 format-charging-padding = 2
 format-charging-underline = ${colors.underline}
+format-charging-overline = ${colors.underline}
 
-format-discharging-prefix = " "
+format-discharging-prefix-foreground = ${colors.icon}
 format-discharging-background = ${colors.background}
 format-discharging-foreground = ${colors.foreground}
 format-discharging-padding = 2
 format-discharging-underline = ${colors.underline}
+format-discharging-overline     = ${colors.underline}
 
-format-full-prefix = " "
+format-full-prefix-foreground = ${colors.icon}
 format-full-background = ${colors.background}
 format-full-foreground = ${colors.foreground}
 format-full-padding = 2
 format-full-underline = ${colors.underline}
+format-full-overline     = ${colors.underline}
 
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-foreground = ${colors.foreground-alt}
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-foreground = ${colors.icon}
+ramp-capacity-0-foreground = #f53c3c
+ramp-capacity-1-foreground = #ffa900
 
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-foreground = ${colors.foreground-alt}
-animation-charging-framerate = 750
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-foreground = ${colors.icon}
+animation-charging-framerate = 400
 
 ; vim:ft=dosini
