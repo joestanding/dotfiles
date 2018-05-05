@@ -1,7 +1,16 @@
 #!/usr/bin/env python3
 
+# I'm not gonna fall into the trap of trying to make this
+# perfect, super-modular or totally adherent to the rules
+# of proper Python. It's hacky and will stay hacky :)
+
 import subprocess
-import psutil
+import sys
+try:
+    import psutil
+except Exception as err:
+    print("You need to install psutil!")
+    sys.exit(1)
 import os
 from colorama import Fore, Back, Style
 
@@ -10,18 +19,6 @@ from colorama import Fore, Back, Style
 class Maths:
     def percentile(a, b):
         return int(a * b / 100)
-
-# =================================================================================== #
-
-class Memory:
-    def __init__(self):
-        self.data = psutil.virtual_memory()
-
-    def get_free(self):
-        return self.data.free
-
-    def get_used_percentage(self):
-        return int(self.data.percent)
 
 # =================================================================================== #
 
@@ -56,44 +53,15 @@ class Services:
 
 # =================================================================================== #
 
-class Storage:
-    def __init__(self):
-        self.data = {}
-        self.df_output = subprocess.check_output(['df', '-h']).decode('utf-8')
-        for index, line in enumerate(self.df_output.strip().split('\n')):
-            if index is not 0:
-                tokens = line.strip().split()
-                self.data[tokens[0]] = {}
-                self.data[tokens[0]]['size'] = tokens[1]
-                self.data[tokens[0]]['used'] = tokens[2]
-                self.data[tokens[0]]['available'] = tokens[3]
-                self.data[tokens[0]]['use_percentage'] = tokens[4].replace('%', '')
-                self.data[tokens[0]]['mounted'] = tokens[5]
-
-    def get_filesystem(self, filesystem):
-        return self.data[filesystem]
-
-# =================================================================================== #
-
-class Users:
-    def __init__(self):
-        self.data = []
-        self.w_output = subprocess.check_output(['w', '-i']).decode('utf-8')
-        for index, line in enumerate(self.w_output.strip().split('\n')):
-            if index > 1:
-                tokens = line.strip().split()
-                user = {}
-                user['name'] = tokens[0]
-                user['tty'] = tokens[1]
-                user['from'] = tokens[2]
-                self.data.append(user)
-
-    def get_users(self):
-        return self.data
-
-# =================================================================================== #
-
 class UI:
+    def friendly_bytes(size, precision=2):
+        suffixes=['B','KB','MB','GB','TB']
+        suffixIndex = 0
+        while size > 1024 and suffixIndex < 4:
+            suffixIndex += 1 #increment the index of the suffix
+            size = size/1024.0 #apply the division
+        return "%.*f%s"%(precision,size,suffixes[suffixIndex])
+
     def banner():
         print("")
         print("")
@@ -107,19 +75,37 @@ class UI:
 ╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚══════╝╚═╝  ╚═╝\n \
                                           ")
 
-    def progress_bar(width, percent):
+    def progress_bar(width, percent, total, used, free):
         bar = '['
         coloured_bars = Maths.percentile(percent, width)
         for i in range(width):
             if i <= coloured_bars:
+                # Determine colour
+                x1 = i / width * 100
+                if x1 <= 70:
+                    block_colour = Fore.GREEN
+                if x1 > 65 and x1 <= 85:
+                    block_colour = Fore.YELLOW
+                if x1 > 85:
+                    block_colour = Fore.RED
                 if i == coloured_bars:
-                    bar += Fore.GREEN + '|' + Style.RESET_ALL
+                    bar += block_colour + '|' + Style.RESET_ALL
                 else:
-                    bar += Fore.GREEN + '=' + Style.RESET_ALL
+                    bar += block_colour + '=' + Style.RESET_ALL
             else:
-                bar += '='
+                bar += Style.DIM + '=' + Style.RESET_ALL
         bar += '] ' + str(percent) + '%'
-        return bar
+
+        print("    " + bar)
+        print("     {label_total:<6}{value_total:>9}   " \
+              "{label_used:<5}{value_used:>9}   " \
+              "{label_free:<5}{value_free:>10}".format(label_total=UI.ct(Fore.BLUE, 'Total:'), 
+                  value_total=total,
+                  label_used=UI.ct(Fore.BLUE, 'Used:'),
+                  value_used=used,
+                  label_free=UI.ct(Fore.BLUE, 'Free:'),
+                  value_free=free))
+
 
     def status(status):
         if status == "active":
@@ -141,6 +127,8 @@ class UI:
             bg = Back.RED
         return bg + Fore.BLACK + ("   {0:.2f}   ".format(avg)) + Style.RESET_ALL
 
+    
+
     def ct(colour, text):
         return colour + text + Style.RESET_ALL
 
@@ -152,9 +140,6 @@ def p(colour, message):
 
 def main():
     subprocess.call('clear')
-    storage = Storage()
-    users = Users()
-    memory = Memory()
 
     # ============================================================= #
     # Configuration                                                 #
@@ -173,65 +158,65 @@ def main():
     # ============================================================= #
     # Logged-in Users                                               #
     # ============================================================= #
+
     p(Fore.YELLOW, "Users:")
-    for user in users.get_users():
-        print("  " + Fore.MAGENTA + user['name'] + Style.RESET_ALL + \
-              Style.DIM + " on " + Style.NORMAL + user['tty'] + \
-              Style.DIM + ' via ' + Style.NORMAL + user['from'] + \
+    for user in psutil.users():
+        for process in psutil.process_iter():
+            if process.pid == user.pid:
+                process_name = process.name()
+        print("  " + Fore.MAGENTA + user.name + Style.RESET_ALL + \
+              Style.DIM + ' on ' + Style.NORMAL + user.terminal + \
+              Style.DIM + ' via ' + Style.NORMAL + user.host + \
+              Style.DIM + ' running ' + Style.NORMAL + process_name + \
               Style.RESET_ALL)
     print("")
-        # ============================================================= #
+
+    # ============================================================= #
     # CPU Load                                                      #
     # ============================================================= #
+
     p(Fore.YELLOW, "CPU:")
     avgs = os.getloadavg()
     print("           " + UI.load_average(avgs[0]) + "  " + UI.load_average(avgs[1]) + "  " + UI.load_average(avgs[2]))
     print("")
+
     # ============================================================= #
     # Memory                                                        #
     # ============================================================= #
+
     p(Fore.YELLOW, "Memory:")
-    print("    " + UI.progress_bar(bar_width, memory.get_used_percentage()))
-    print("     {label_total:<10}   {value_total:>6}   " \
-          "{label_used:<10}   {value_used:>6}   " \
-          "{label_free:<10}   {value_free:>7}".format(label_total=UI.ct(Fore.BLUE, 'Total:'), 
-              value_total='16GB',
-              label_used=UI.ct(Fore.BLUE, 'Used:'),
-              value_used='6.4GB',
-              label_free=UI.ct(Fore.BLUE, 'Free:'),
-              value_free='2.3GB'))
+    memory_stats = psutil.virtual_memory()
+    UI.progress_bar(bar_width, int(memory_stats.percent),
+                    UI.friendly_bytes(memory_stats.total),
+                    UI.friendly_bytes(memory_stats.used),
+                    UI.friendly_bytes(memory_stats.free))
     print("")
+
     # ============================================================= #
     # Storage Volumes                                               #
     # ============================================================= #
-    p(Fore.YELLOW, "Storage:")
-    sda1 = storage.get_filesystem('/dev/sda1')
-    print("  " + Fore.MAGENTA + "/dev/sda1 " + Style.RESET_ALL + \
-          Style.DIM + sda1['available'] + ' left of ' + sda1['size'] + \
-          Style.RESET_ALL)
-    print("    " + UI.progress_bar(bar_width, int(sda1['use_percentage'])))
-    print("     {label_total:<10}   {value_total:>6}   " \
-          "{label_used:<10}   {value_used:>6}   " \
-          "{label_free:<10}   {value_free:>7}".format(label_total=UI.ct(Fore.BLUE, 'Total:'), 
-              value_total=sda1['size'],
-              label_used=UI.ct(Fore.BLUE, 'Used:'),
-              value_used=sda1['used'],
-              label_free=UI.ct(Fore.BLUE, 'Free:'),
-              value_free=sda1['available']))
 
-    print("")
+    p(Fore.YELLOW, "Storage:")
+    for partition in psutil.disk_partitions():
+        if partition.device in filesystems:
+            partition_stats = psutil.disk_usage(partition.mountpoint)
+            print("  " + Fore.MAGENTA + "/dev/sda1 " + Style.RESET_ALL + Style.RESET_ALL)
+            UI.progress_bar(bar_width, int(partition_stats.percent),
+                    UI.friendly_bytes(partition_stats.total),
+                    UI.friendly_bytes(partition_stats.used),
+                    UI.friendly_bytes(partition_stats.free))
+            print("")
 
     # ============================================================= #
     # System Services                                               #
     # ============================================================= #
+
     p(Fore.YELLOW, "Services:")
     right = False
-
     longest_service = 0
     for k, v in services.items():
         if len(k) > longest_service:
             longest_service = len(k)
-
     for friendly_name, name in services.items():
         line = "  {friendly_name:<{rename_me}}  {status:>12} ".format(rename_me=longest_service, friendly_name=friendly_name, status=UI.status(Services.check_status(name)))
         if not right:
@@ -240,9 +225,11 @@ def main():
             print(line)
         right = not right
     print("")
+
     # ============================================================= #
     # System Updates                                                #
     # ============================================================= #
+
     p(Fore.YELLOW, "Updates:")
     print("  " + Fore.MAGENTA + Updates.get_updates() + " packages" + Style.RESET_ALL + " have updates available")
     print("")
