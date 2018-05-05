@@ -24,6 +24,8 @@ alias ll="ls -lah"
 alias gdb="gdb -q"
 alias reload-polybar="pkill -USR1 polybar"
 alias http="python2 -m SimpleHTTPServer"
+alias ipf="sudo ip addr flush"
+alias v="nvim"
 alias ..="cd ../"
 
 set_debian_aliases () {
@@ -31,12 +33,15 @@ set_debian_aliases () {
     alias s="apt-cache search --names-only"
     alias upgrade="sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade && sudo apt-get autoremove"
     alias update="upgrade"
+    alias u="upgrade"
 }
 
 set_arch_aliases() {
     alias s="pacaur -Ss"
 	alias i="pacaur -S"
 	alias upgrade="pacaur -Syu"
+    alias update="upgrade"
+    alias u="upgrade"
 }
 
 if [ -e "/etc/lsb-release" ]; then
@@ -179,13 +184,11 @@ setprompt() {
   fi
 
   # Check if we are on SSH or not
-  #if [[ -n "$SSH_CLIENT"  ||  -n "$SSH2_CLIENT" ]]; then 
-  #  eval PR_HOST='${PR_YELLOW}%M${PR_NO_COLOR}' #SSH
-  #else 
-  #  eval PR_HOST='${PR_GREEN}%M${PR_NO_COLOR}' # no SSH
-  #fi
-
-  eval PR_HOST='${PR_NO_COLOR}%M'
+  if [[ -n "$SSH_CLIENT"  ||  -n "$SSH2_CLIENT" ]]; then
+    eval PR_HOST='${PR_YELLOW}%M${PR_NO_COLOR}' #SSH
+  else
+    eval PR_HOST='${PR_NO_COLOR}%M' # no SSH
+  fi
 
   # set the prompt
   PS1=$'${PR_NO_COLOR}${PR_CYAN}[${PR_WHITE}${PR_USER}${PR_CYAN}@${PR_HOST}${PR_CYAN}]${PR_BLUE} %~${PR_CYAN}\n${PR_USER_OP} '
