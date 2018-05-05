@@ -4,4 +4,5 @@ setxkbmap gb
 xrdb -load ~/.Xresources
 compton -b -c
 feh --bg-scale ~/wallpapers/wallpaper.jpg
-polybar example
+polybar mint &
+xeventbind resolution /home/joe/.resources/udev-resize.sh &
