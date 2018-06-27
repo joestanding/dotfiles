@@ -26,7 +26,7 @@ class Configuration:
         'MySQL' : 'mysql',
         'SSH' : 'ssh',
         'Postgres': 'postgresql',
-        'Nginx': 'nginx'
+        'Nginx': 'nginx',
     }
 
 # =================================================================================== #
@@ -38,7 +38,7 @@ class Maths:
 # =================================================================================== #
 
 class Updates:
-    def get_updates():
+    def get_debian_updates():
         try:
             updates_available = subprocess.check_output('expr `apt list --upgradable 2>/dev/null | wc -l` - 1', shell=True).decode('utf-8')
         except Exception as err:
@@ -53,7 +53,8 @@ class Services:
 
     def check_status(service):
         try:
-            ctl_output = subprocess.check_output(['systemctl', 'status', service]).decode('utf-8')
+            with open(os.devnull, 'w') as devnull:
+                ctl_output = subprocess.check_output(['systemctl', 'status', service], stderr=devnull).decode('utf-8')
         except Exception as err:
             ctl_output = err.output.decode('utf-8')
         for line in ctl_output.strip().split('\n'):
@@ -228,13 +229,15 @@ def main():
             print(line)
         right = not right
     print("")
+    if right:
+        print("")
 
     # ============================================================= #
     # System Updates                                                #
     # ============================================================= #
 
     p(Fore.YELLOW, "Updates:")
-    print("  " + Fore.MAGENTA + Updates.get_updates() + " packages" + Style.RESET_ALL + " have updates available")
+    print("  " + Fore.MAGENTA + Updates.get_debian_updates() + " packages" + Style.RESET_ALL + " have updates available")
     print("")
     print("")
     print("")
