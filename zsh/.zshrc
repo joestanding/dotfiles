@@ -215,3 +215,4 @@ fi
 export EDITOR=vim
 export VISUAL=vim
 export TERM=xterm
+export PATH=$PATH:/usr/local/bin
