@@ -1,7 +1,7 @@
 [colors]
 background          = #020C0D
 foreground          = #BDBDBD
-icon                = #01C46A
+icon                = #E0E0E0
 underline           = ${colors.icon}
 
 primary             = #ffb52a
@@ -16,7 +16,7 @@ font-0              = Terminus:size=12
 font-1              = FontAwesome:size=8
 
 bottom              = true
-underline-size      = 2
+underline-size      = 0
 overline-size       = 0
 
 fixed-center        = true

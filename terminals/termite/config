@@ -27,8 +27,8 @@ color15 = #f5f5f5
 
 [options]
 allow_bold    = true
-;font = Terminus 9
-font = SF Mono bold 10
+font = Terminus 9
+;font = SF Mono bold 10
 clickable_url = false
 cursor_blink  = system
 cursor_shape  = block
