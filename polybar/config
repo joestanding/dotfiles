@@ -15,7 +15,7 @@ foreground          = ${colors.foreground}
 font-0              = Terminus:size=12
 font-1              = FontAwesome:size=8
 
-bottom              = true
+bottom              = false
 underline-size      = 0
 overline-size       = 0
 
