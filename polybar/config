@@ -1,7 +1,7 @@
 [colors]
 background          = #020C0D
-foreground          = #BDBDBD
-icon                = #E0E0E0
+foreground          = #E0E0E0
+icon                = #999999
 underline           = ${colors.icon}
 
 primary             = #ffb52a
@@ -13,7 +13,11 @@ background          = ${colors.background}
 foreground          = ${colors.foreground}
 
 font-0              = Terminus:size=12
-font-1              = FontAwesome:size=8
+font-1              = FontAwesome:size=8;1
+font-2              = FontAwesome:size=8;-2
+font-3              = NotoSans-Regular:size=8;-1
+font-4              = MaterialIcons:size=10;-1
+font-5              = Termsynu:size=8:antialias=false;0
 
 bottom              = false
 underline-size      = 0
@@ -25,13 +29,18 @@ width               = 100%
 height              = 33
 
 module-margin-right = 3
-modules-center      = i3 username cpu memory filesystem battery debian-updates arch-updates eth0 eth1 tap0 weather date
+#modules-center      = i3 username cpu memory memorybar filesystem battery debian-updates arch-updates eth0 eth1 tap0 weather date
+
+modules-left        = i3
+modules-right       = debian-updates eth0 eth1 tap0 cpu-bar memorybar filesystem battery-bar date
 
 wm-restack          = i3
 
 cursor-click        = pointer
 cursor-scroll       = ns-resize
 
+padding-left        = 5
+padding-right       = 5
 
 #border-size        = 10 ; Set this if you want some spacing around the bar.
 
@@ -88,7 +97,7 @@ format-background   = ${colors.background}
 format-foreground   = ${colors.foreground}
 format-underline    = ${colors.underline}
 format-overline     = ${colors.underline}
-format-padding      = 2
+format-padding      = 0
 format-prefix       = " "
 format-prefix-foreground = ${colors.icon}
 
@@ -106,26 +115,6 @@ format-foreground   = ${colors.foreground}
 format-underline    = ${colors.underline}
 format-overline     = ${colors.underline}
 format-padding      = 2
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-[module/filesystem]
-format-mounted-background = ${colors.background}
-format-mounted-foreground = ${colors.foreground}
-format-mounted-underline = ${colors.underline}
-format-mounted-overline = ${colors.underline}
-format-mounted-padding = 2
-
-type = internal/fs
-interval = 25
-mount-0 = /
-;label-mounted = %mountpoint%%{F-}: %percentage_used%%
-format-overline     = ${colors.underline}
-format = <label>
-format-mounted-prefix = " "
-format-mounted-prefix-foreground = ${colors.icon}
-label-mounted = %percentage_used%%
-label-unmounted = %mountpoint% not mounted
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -171,7 +160,7 @@ label-urgent-padding = 1
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-[module/cpu]
+[module/cpu-percent]
 format-background = ${colors.background}
 format-foreground = ${colors.foreground}
 format-underline = ${colors.underline}
@@ -198,6 +187,125 @@ format-prefix = " "
 label = %percentage_used%%
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[module/memorybar]
+type = internal/memory
+format = <label> <bar-used>
+label =  RAM 
+label-font=7
+
+bar-used-width = 10
+bar-used-foreground-0 = #aaff77
+bar-used-foreground-1 = #aaff77
+bar-used-foreground-2 = #fba922
+bar-used-foreground-3 = #ff5555
+bar-used-indicator = |
+bar-used-indicator-font = 6
+bar-used-indicator-foreground = #ff
+bar-used-fill = ─
+bar-used-fill-font = 6
+bar-used-empty = ─
+bar-used-empty-font = 6
+bar-used-empty-foreground = #444444
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[module/cpu-bar]
+type = internal/cpu
+format = <label> <bar-load>
+label =  CPU
+label-font=7
+
+bar-load-width = 10
+bar-load-foreground-0 = #aaff77
+bar-load-foreground-1 = #aaff77
+bar-load-foreground-2 = #fba922
+bar-load-foreground-3 = #ff5555
+bar-load-indicator = |
+bar-load-indicator-font = 6
+bar-load-indicator-foreground = #ff
+bar-load-fill = ─
+bar-load-fill-font = 6
+bar-load-empty = ─
+bar-load-empty-font = 6
+bar-load-empty-foreground = #444444
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[module/battery-bar]
+type = internal/battery
+battery = BAT1
+adapter = ACAD
+full-at = 98
+interval = 5
+
+format-charging    = <label-charging> <bar-capacity>
+format-discharging = <label-discharging> <bar-capacity>
+format-full = <label-full> <bar-capacity>
+
+label-charging =  BAT
+label-discharging =  BAT
+label-full =  BAT
+
+bar-capacity-width = 10
+bar-capacity-foreground-0 = #aaff77
+bar-capacity-foreground-1 = #aaff77
+bar-capacity-foreground-2 = #aaff77
+bar-capacity-foreground-3 = #aaff77
+bar-capacity-indicator = |
+bar-capacity-indicator-font = 6
+bar-capacity-indicator-foreground = #ff
+bar-capacity-fill = ─
+bar-capacity-fill-font = 6
+bar-capacity-empty = ─
+bar-capacity-empty-font = 6
+bar-capacity-empty-foreground = #444444
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+mount-0 = /
+
+format-mounted = <label-mounted> <bar-used>
+label-mounted = " HDD"
+label-mounted-font=7
+bar-used-width = 10
+bar-used-foreground-0 = #aaff77
+bar-used-foreground-1 = #aaff77
+bar-used-foreground-2 = #aaff77
+;bar-used-foreground-2 = #fba922
+bar-used-foreground-3 = #ff5555
+bar-used-indicator = |
+bar-used-indicator-font = 6
+bar-used-indicator-foreground = #ff
+bar-used-fill = ─
+bar-used-fill-font = 6
+bar-used-empty = ─
+bar-used-empty-font = 6
+bar-used-empty-foreground = #444444
+
+;format-mounted-background = ${colors.background}
+;format-mounted-foreground = ${colors.foreground}
+;format-mounted-underline = ${colors.underline}
+;format-mounted-overline = ${colors.underline}
+;format-mounted-padding = 2
+
+;type = internal/fs
+;interval = 25
+;mount-0 = /
+;;label-mounted = %mountpoint%%{F-}: %percentage_used%%
+;format-overline     = ${colors.underline}
+;format = <label>
+;format-mounted-prefix = " "
+;format-mounted-prefix-foreground = ${colors.icon}
+;label-mounted = %percentage_used%%
+;label-unmounted = %mountpoint% not mounted
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 
 [module/wlan]
 type = internal/network
@@ -227,7 +335,7 @@ format-background = ${colors.background}
 format-foreground = ${colors.foreground}
 format-underline = ${colors.underline}
 format-overline     = ${colors.underline}
-format-padding = 2
+format-padding = 0
 type = internal/network
 interface = eth0
 interval = 3.0
@@ -286,13 +394,13 @@ format-underline = ${colors.underline}
 format-overline     = ${colors.underline}
 format-prefix = " "
 format-prefix-foreground = ${colors.icon}
-format-padding = 2
+format-padding = 0
 type = internal/date
 interval = 1
-date = "%A %d %B %Y"
-date-alt = " %Y-%m-%d"
-time = %I:%M:%S %p
-time-alt = %H:%M:%S
+date-alt = "%A %d %B %Y"
+date = " %Y-%m-%d"
+time-alt = %I:%M:%S %p
+time = %H:%M:%S
 label = %date% %time%
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -328,9 +436,9 @@ bar-volume-empty-foreground = ${colors.foreground-alt}
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-[module/battery]
+[module/battery-ramp]
 type = internal/battery
-battery = BAT2
+battery = BAT1
 adapter = ACAD
 full-at = 98
 interval = 5
