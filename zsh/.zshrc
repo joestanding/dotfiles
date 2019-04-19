@@ -46,12 +46,12 @@ set_arch_aliases() {
 
 if [ -e "/etc/lsb-release" ]; then
 	if grep -qE "Kali|Debian" /etc/lsb-release; then set_debian_aliases; fi
-    if grep -q "Arch" /etc/lsb-release; then set_arch_aliases; fi
+    if grep -qE "Arch|Anarchy" /etc/lsb-release; then set_arch_aliases; fi
 fi
 
 if [ -e "/etc/os-release" ]; then
 	if grep -qE "Kali|Debian" /etc/os-release; then set_debian_aliases; fi
-    if grep -q "Arch" /etc/os-release; then set_arch_aliases; fi
+    if grep -qE "Arch|Anarchy" /etc/os-release; then set_arch_aliases; fi
 fi
 
 ifdu () {
@@ -191,7 +191,7 @@ setprompt() {
   fi
 
   # set the prompt
-  PS1=$'${PR_NO_COLOR}${PR_CYAN}[${PR_WHITE}${PR_USER}${PR_CYAN}@${PR_HOST}${PR_CYAN}]${PR_BLUE} %~${PR_CYAN}\n${PR_USER_OP} '
+  PS1=$'${PR_NO_COLOR}${PR_CYAN}${PR_WHITE}${PR_USER}${PR_CYAN}@${PR_HOST}${PR_CYAN}${PR_BLUE} %~${PR_CYAN}\n${PR_USER_OP} '
   PS2=$'%_>'
   RPROMPT=$'${vcs_info_msg_0_}'
 }
