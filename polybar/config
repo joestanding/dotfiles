@@ -32,7 +32,7 @@ module-margin-right = 3
 #modules-center      = i3 username cpu memory memorybar filesystem battery debian-updates arch-updates eth0 eth1 tap0 weather date
 
 modules-left        = i3
-modules-right       = debian-updates eth0 eth1 tap0 cpu-bar memorybar filesystem battery-bar date
+modules-right       = eth0 eth1 tap0 extip cpu-bar memorybar filesystem battery-bar date
 
 wm-restack          = i3
 
@@ -190,9 +190,11 @@ label = %percentage_used%%
 
 [module/memorybar]
 type = internal/memory
-format = <label> <bar-used>
-label =  RAM 
+format = <bar-used> <label>
+format-prefix = " RAM "
 label-font=7
+label =  (%gb_used%)
+label-foreground = ${colors.icon}
 
 bar-used-width = 10
 bar-used-foreground-0 = #aaff77
@@ -243,6 +245,7 @@ interval = 5
 format-charging    = <label-charging> <bar-capacity>
 format-discharging = <label-discharging> <bar-capacity>
 format-full = <label-full> <bar-capacity>
+
 
 label-charging =  BAT
 label-discharging =  BAT
@@ -384,6 +387,19 @@ format-connected-prefix = " vpn "
 format-connected-prefix-foreground = ${colors.icon}
 label-connected = %local_ip%
 format-disconnected =
+[module/extip]
+type                = custom/script
+interval            = 30
+exec                = python2 ~/.config/polybar/extip
+format              = <label>
+format-background   = ${colors.background}
+format-foreground   = ${colors.foreground}
+format-underline    = ${colors.underline}
+format-overline     = ${colors.underline}
+format-padding      = 2
+format-prefix       = " ext "
+format-prefix-foreground = ${colors.icon}
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
