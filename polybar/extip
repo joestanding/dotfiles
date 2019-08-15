@@ -1,0 +1,13 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import requests
+
+
+try:
+    req = requests.get("https://wtfismyip.com/json")
+    ip_addr = req.json()['YourFuckingIPAddress']
+    ip_isp  = req.json()['YourFuckingISP']
+    print(ip_addr + " (" + ip_isp + ")")
+except Exception as e:
+    print(":(")
