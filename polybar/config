@@ -12,7 +12,7 @@ alert               = #bd2c40
 background          = ${colors.background}
 foreground          = ${colors.foreground}
 
-font-0              = Terminus:size=12
+font-0              = xos4 Terminus:size=12
 font-1              = FontAwesome:size=8;1
 font-2              = FontAwesome:size=8;-2
 font-3              = NotoSans-Regular:size=8;-1
@@ -29,10 +29,9 @@ width               = 100%
 height              = 33
 
 module-margin-right = 3
-#modules-center      = i3 username cpu memory memorybar filesystem battery debian-updates arch-updates eth0 eth1 tap0 weather date
 
 modules-left        = i3
-modules-right       = eth0 eth1 tap0 extip cpu-bar memorybar filesystem battery-bar date
+modules-right       = eth0 eth1 tap0 extip cpu-bar memory-bar filesystem battery-bar date
 
 wm-restack          = i3
 
@@ -55,69 +54,6 @@ screenchange-reload = true
 margin-top          = 5
 margin-bottom       = 5
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-[module/weather]
-type                = custom/script
-interval            = 300
-exec                = python2 ~/.config/polybar/weather
-format              = <label>
-format-background   = ${colors.background}
-format-foreground   = ${colors.foreground}
-format-underline    = ${colors.underline}
-format-overline     = ${colors.underline}
-format-padding      = 2
-format-prefix       = " "
-format-prefix-foreground = ${colors.icon}
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-[module/username]
-type                = custom/script
-interval            = 1200
-exec                = ~/.config/polybar/username
-format              = <label>
-format-background   = ${colors.background}
-format-foreground   = ${colors.foreground}
-format-underline    = ${colors.underline}
-format-overline     = ${colors.underline}
-format-padding      = 2
-format-prefix       = " "
-format-prefix-foreground = ${colors.icon}
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-[module/debian-updates]
-type                = custom/script
-interval            = 60
-exec                = ~/.config/polybar/debian-updates
-exec-if             = "grep -q 'Kali' /etc/lsb-release"
-format              = <label>
-format-background   = ${colors.background}
-format-foreground   = ${colors.foreground}
-format-underline    = ${colors.underline}
-format-overline     = ${colors.underline}
-format-padding      = 0
-format-prefix       = " "
-format-prefix-foreground = ${colors.icon}
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-[module/arch-updates]
-type                = custom/script
-interval            = 60
-exec                = ~/.config/polybar/arch-updates
-exec-if             = "grep -q 'Arch' /etc/lsb-release"
-format              = <label>
-;format-prefix      = " "
-format-background   = ${colors.background}
-format-foreground   = ${colors.foreground}
-format-underline    = ${colors.underline}
-format-overline     = ${colors.underline}
-format-padding      = 2
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 [module/i3]
 format-background = ${colors.background}
 format-foreground = ${colors.foreground}
@@ -128,9 +64,6 @@ type = internal/i3
 format = <label-state> <label-mode>
 index-sort = true
 wrapping-scroll = false
-
-; Only show workspaces on the same output as the bar
-;pin-workspaces = true
 
 label-mode-padding = 2
 label-mode-foreground = #000
@@ -160,35 +93,29 @@ label-urgent-padding = 1
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-[module/cpu-percent]
-format-background = ${colors.background}
-format-foreground = ${colors.foreground}
-format-underline = ${colors.underline}
-format-overline     = ${colors.underline}
-format-padding = 2
+[module/cpu-bar]
 type = internal/cpu
-interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.icon}
-label = %percentage:2%%
+format = <label> <bar-load>
+label =  CPU
+label-font=7
+
+bar-load-width = 10
+bar-load-foreground-0 = #aaff77
+bar-load-foreground-1 = #aaff77
+bar-load-foreground-2 = #fba922
+bar-load-foreground-3 = #ff5555
+bar-load-indicator = |
+bar-load-indicator-font = 6
+bar-load-indicator-foreground = #ff
+bar-load-fill = ─
+bar-load-fill-font = 6
+bar-load-empty = ─
+bar-load-empty-font = 6
+bar-load-empty-foreground = #444444
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-[module/memory]
-format-padding = 2
-format-background = ${colors.background}
-format-foreground = ${colors.foreground}
-format-prefix-foreground = ${colors.icon}
-format-underline = ${colors.underline}
-format-overline     = ${colors.underline}
-type = internal/memory
-interval = 2
-format-prefix = " "
-label = %percentage_used%%
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-[module/memorybar]
+[module/memory-bar]
 type = internal/memory
 format = <bar-used> <label>
 format-prefix = " RAM "
@@ -212,29 +139,6 @@ bar-used-empty-foreground = #444444
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-[module/cpu-bar]
-type = internal/cpu
-format = <label> <bar-load>
-label =  CPU
-label-font=7
-
-bar-load-width = 10
-bar-load-foreground-0 = #aaff77
-bar-load-foreground-1 = #aaff77
-bar-load-foreground-2 = #fba922
-bar-load-foreground-3 = #ff5555
-bar-load-indicator = |
-bar-load-indicator-font = 6
-bar-load-indicator-foreground = #ff
-bar-load-fill = ─
-bar-load-fill-font = 6
-bar-load-empty = ─
-bar-load-empty-font = 6
-bar-load-empty-foreground = #444444
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 [module/battery-bar]
 type = internal/battery
 battery = BAT1
@@ -242,14 +146,18 @@ adapter = ACAD
 full-at = 98
 interval = 5
 
-format-charging    = <label-charging> <bar-capacity>
-format-discharging = <label-discharging> <bar-capacity>
-format-full = <label-full> <bar-capacity>
+format-charging    =  BAT <bar-capacity> <label-charging>
+label-charging = (%percentage%%)
 
+format-discharging =  BAT <bar-capacity> <label-discharging>
+label-discharging = (%percentage%%)
 
-label-charging =  BAT
-label-discharging =  BAT
-label-full =  BAT
+format-full =  BAT <bar-capacity> <label-full>
+label-full = 
+
+label-charging-foreground = ${colors.icon}
+label-discharging-foreground = ${colors.icon}
+label-full-foreground = ${colors.icon}
 
 bar-capacity-width = 10
 bar-capacity-foreground-0 = #aaff77
@@ -272,9 +180,9 @@ type = internal/fs
 interval = 25
 mount-0 = /
 
-format-mounted = <label-mounted> <bar-used>
-label-mounted = " HDD"
-label-mounted-font=7
+format-mounted =  HDD <bar-used> <label-mounted>
+label-mounted = "(%free% rem.)"
+label-mounted-foreground = ${colors.icon}
 bar-used-width = 10
 bar-used-foreground-0 = #aaff77
 bar-used-foreground-1 = #aaff77
@@ -290,65 +198,24 @@ bar-used-empty = ─
 bar-used-empty-font = 6
 bar-used-empty-foreground = #444444
 
-;format-mounted-background = ${colors.background}
-;format-mounted-foreground = ${colors.foreground}
-;format-mounted-underline = ${colors.underline}
-;format-mounted-overline = ${colors.underline}
-;format-mounted-padding = 2
-
-;type = internal/fs
-;interval = 25
-;mount-0 = /
-;;label-mounted = %mountpoint%%{F-}: %percentage_used%%
-;format-overline     = ${colors.underline}
-;format = <label>
-;format-mounted-prefix = " "
-;format-mounted-prefix-foreground = ${colors.icon}
-;label-mounted = %percentage_used%%
-;label-unmounted = %mountpoint% not mounted
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
-[module/wlan]
-type = internal/network
-interface = 
-interval = 3.0
-
-format-connected = <ramp-signal> <label-connected>
-format-connected-underline = #9f78e1
-label-connected = %essid%
-
-format-disconnected =
-;format-disconnected = <label-disconnected>
-;format-disconnected-underline = ${self.format-connected-underline}
-;label-disconnected = %ifname% disconnected
-
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
-ramp-signal-foreground = ${colors.foreground}
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [module/eth0]
 format-background = ${colors.background}
-format-foreground = ${colors.foreground}
+format-foreground = ${colors.icon}
 format-underline = ${colors.underline}
 format-overline     = ${colors.underline}
 format-padding = 0
 type = internal/network
-interface = eth0
+interface = ens33
 interval = 3.0
 format-connected-padding = 2
 format-connected-underline = ${colors.underline}
 format-connected-overline = ${colors.underline}
 format-connected-background = ${colors.background}
-format-connected-foreground = ${colors.foreground}
+format-connected-foreground = ${colors.icon}
 format-connected-prefix = " eth0 "
-format-connected-prefix-foreground = ${colors.icon}
+format-connected-prefix-foreground = ${colors.foreground}
 label-connected = %local_ip%
 format-disconnected =
 [module/eth1]
@@ -390,26 +257,26 @@ format-disconnected =
 [module/extip]
 type                = custom/script
 interval            = 30
-exec                = python2 ~/.config/polybar/extip
+exec                = python3 ~/.config/polybar/extip
 format              = <label>
 format-background   = ${colors.background}
-format-foreground   = ${colors.foreground}
+format-foreground   = ${colors.icon}
 format-underline    = ${colors.underline}
 format-overline     = ${colors.underline}
 format-padding      = 2
 format-prefix       = " ext "
-format-prefix-foreground = ${colors.icon}
+format-prefix-foreground = ${colors.foreground}
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [module/date]
 format-background = ${colors.background}
-format-foreground = ${colors.foreground}
+format-foreground = ${colors.icon}
 format-underline = ${colors.underline}
 format-overline     = ${colors.underline}
 format-prefix = " "
-format-prefix-foreground = ${colors.icon}
+format-prefix-foreground = ${colors.foreground}
 format-padding = 0
 type = internal/date
 interval = 1
@@ -418,37 +285,6 @@ date = " %Y-%m-%d"
 time-alt = %I:%M:%S %p
 time = %H:%M:%S
 label = %date% %time%
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-[module/volume]
-format-background = #2E2C37
-type = internal/volume
-
-format-volume = <label-volume> <bar-volume>
-label-volume = VOL
-label-volume-foreground = ${root.foreground}
-
-format-muted-prefix = " "
-format-muted-foreground = ${colors.foreground-alt}
-label-muted = sound muted
-
-bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
-bar-volume-gradient = false
-bar-volume-indicator = |
-bar-volume-indicator-font = 2
-bar-volume-fill = ─
-bar-volume-fill-font = 2
-bar-volume-empty = ─
-bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
