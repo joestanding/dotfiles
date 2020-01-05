@@ -42,7 +42,7 @@ new_window none
 # ======================================================= #
 # Set the gaps around windows
 gaps inner 20 # Low DPI
-gaps outer 25 # Low DPI
+gaps outer 18 # Low DPI
 
 # ======================================================= #
 # Miscellaneous                                           #
