@@ -8,6 +8,10 @@ primary             = #ffb52a
 secondary           = #e60053
 alert               = #bd2c40
 
+; Lime green
+;bar-used            = #aaff77
+bar-used            = #ea80fc
+
 [bar/mint]
 background          = ${colors.background}
 foreground          = ${colors.foreground}
@@ -100,8 +104,8 @@ label =  CPU
 label-font=7
 
 bar-load-width = 10
-bar-load-foreground-0 = #aaff77
-bar-load-foreground-1 = #aaff77
+bar-load-foreground-0 = ${colors.bar-used}
+bar-load-foreground-1 = ${colors.bar-used}
 bar-load-foreground-2 = #fba922
 bar-load-foreground-3 = #ff5555
 bar-load-indicator = |
@@ -124,8 +128,8 @@ label =  (%gb_used%)
 label-foreground = ${colors.icon}
 
 bar-used-width = 10
-bar-used-foreground-0 = #aaff77
-bar-used-foreground-1 = #aaff77
+bar-used-foreground-0 = ${colors.bar-used}
+bar-used-foreground-1 = ${colors.bar-used}
 bar-used-foreground-2 = #fba922
 bar-used-foreground-3 = #ff5555
 bar-used-indicator = |
@@ -160,10 +164,10 @@ label-discharging-foreground = ${colors.icon}
 label-full-foreground = ${colors.icon}
 
 bar-capacity-width = 10
-bar-capacity-foreground-0 = #aaff77
-bar-capacity-foreground-1 = #aaff77
-bar-capacity-foreground-2 = #aaff77
-bar-capacity-foreground-3 = #aaff77
+bar-capacity-foreground-0 = ${colors.bar-used}
+bar-capacity-foreground-1 = ${colors.bar-used}
+bar-capacity-foreground-2 = ${colors.bar-used}
+bar-capacity-foreground-3 = ${colors.bar-used}
 bar-capacity-indicator = |
 bar-capacity-indicator-font = 6
 bar-capacity-indicator-foreground = #ff
@@ -184,9 +188,9 @@ format-mounted =  HDD <bar-used> <label-mounted>
 label-mounted = "(%free% rem.)"
 label-mounted-foreground = ${colors.icon}
 bar-used-width = 10
-bar-used-foreground-0 = #aaff77
-bar-used-foreground-1 = #aaff77
-bar-used-foreground-2 = #aaff77
+bar-used-foreground-0 = ${colors.bar-used}
+bar-used-foreground-1 = ${colors.bar-used}
+bar-used-foreground-2 = ${colors.bar-used}
 ;bar-used-foreground-2 = #fba922
 bar-used-foreground-3 = #ff5555
 bar-used-indicator = |

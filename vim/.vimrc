@@ -13,12 +13,6 @@ Plugin 'Lokaltog/vim-easymotion'
 " Vundle plug-in manager 
 Plugin 'gmarik/Vundle.vim'
 
-" LESS syntax highlighting
-Plugin 'groenewege/vim-less'
-
-" Jade syntax highlighting
-Plugin 'digitaltoad/vim-jade'
-
 " NERDTree file browser
 Plugin 'scrooloose/nerdtree'
 map <C-n> :NERDTreeToggle<CR>
@@ -50,6 +44,13 @@ Plugin 'nathanaelkane/vim-indent-guides'
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size  = 1
+
+Plugin 'dense-analysis/ale'
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+"let g:ale_open_list = 1
+highlight ALEWarning ctermbg=none cterm=underline
+"let g:ale_set_highlights=0
 
 call vundle#end()            
 
@@ -98,6 +99,11 @@ let mapleader=","
 """"""""""""""""""""""""""""
 " Language Specific        "
 """"""""""""""""""""""""""""
+" HTML
+autocmd Filetype html setlocal tabstop=2
+autocmd Filetype html setlocal softtabstop=2
+autocmd Filetype html setlocal shiftwidth=2     
+
 
 " Jade
 autocmd Filetype jade setlocal tabstop=2
@@ -113,6 +119,11 @@ autocmd Filetype less setlocal shiftwidth=2
 autocmd Filetype yaml setlocal tabstop=2
 autocmd Filetype yaml setlocal softtabstop=2
 autocmd Filetype yaml setlocal shiftwidth=2     
+
+" Ruby
+autocmd Filetype ruby setlocal tabstop=2
+autocmd Filetype ruby setlocal softtabstop=2
+autocmd Filetype ruby setlocal shiftwidth=2     
 
 " Python
 autocmd Filetype python setlocal list!            " Display tabs clearly in Python

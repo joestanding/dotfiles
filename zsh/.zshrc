@@ -15,7 +15,7 @@ export LS_COLORS
 # Aliases and Useful Functions
 #-----------------------------
 alias pacman="pacman --color auto"
-alias pacaur="pacaur --color auto"
+alias yay="yay --color auto"
 alias sd="sudo shutdown now"
 alias gc="git clone"
 alias gp="git pull"
@@ -26,7 +26,9 @@ alias reload-polybar="pkill -USR1 polybar"
 alias http="python2 -m SimpleHTTPServer"
 alias ipf="sudo ip addr flush"
 alias v="nvim"
+alias vim="nvim"
 alias ..="cd ../"
+alias change-java="archlinux-java"
 
 set_debian_aliases () {
 	alias i="sudo apt-get install"
@@ -37,9 +39,9 @@ set_debian_aliases () {
 }
 
 set_arch_aliases() {
-    alias s="pacaur -Ss"
-	alias i="pacaur -S"
-	alias upgrade="pacaur -Syu"
+    alias s="yay -Ss"
+	alias i="yay -S"
+	alias upgrade="yay -Syu"
     alias update="upgrade"
     alias u="upgrade"
 }
@@ -176,7 +178,7 @@ setprompt() {
 
   # Check the UID
   if [[ $UID -ge 1000 ]]; then # normal user
-    eval PR_USER='${PR_GREEN}%n${PR_NO_COLOR}'
+    eval PR_USER='${PR_MAGENTA}%n${PR_NO_COLOR}'
     eval PR_USER_OP='${PR_CYAN}\$${PR_NO_COLOR}'
   elif [[ $UID -eq 0 ]]; then # root
     eval PR_USER='${PR_RED}%n${PR_NO_COLOR}'
@@ -216,3 +218,5 @@ export EDITOR=vim
 export VISUAL=vim
 export TERM=xterm
 export PATH=$PATH:/usr/local/bin
+
+source ~/.local-aliases
