@@ -1,48 +1,61 @@
+#
+#    $$\  $$$$$$\  
+#    \__|$$ ___$$\ 
+#    $$\ \_/   $$ |
+#    $$ |  $$$$$ / 
+#    $$ |  \___$$\ 
+#    $$ |$$\   $$ |
+#    $$ |\$$$$$$  |
+#    \__| \______/ 
+#
+              
+# ======================================================= #
+# Modifiers                                               #
+# ======================================================= #
 # Mod1 = alt
 # Mod4 = win
 
 set $mod Mod1
 
-# Fonts =============================================================================
+# ======================================================= #
+# Fonts                                                   #
+# ======================================================= #
+font pango:Inconsolata 16
 
-#font pango:Terminus 8     # Terminus - Low DPI
-#font pango:Inconsolata 8  # Inconsolata - Low DPI
-#
-#font pango:Terminus 8     # Terminus - Low DPI
-font pango:Inconsolata 16  # Inconsolata - High DPI
-
-# Binds =============================================================================
-
+# ======================================================= #
+# Custom Binds                                            #
+# ======================================================= #
 # Script to rename workspaces with a key-press
 bindsym $mod+r exec "~/.resources/rename-i3-workspace.sh"
 
-# Borders  ==========================================================================
-
-# Set border colours and so on
+# ======================================================= #
+# Borders                                                 #
+# ======================================================= #
 #              border       background   text           indicator   child border
-client.focused #ff0000      #000000      #ffffff        #ffffff     #999999
+client.focused #000000      #000000      #ffffff        #000000     #999999
 
 # Set the border width
-new_window pixel 1
+new_window none
 
-# Gaps ==============================================================================
-
-## Set the gaps around windows
+# ======================================================= #
+# Gaps                                                    #
+# ======================================================= #
+# Set the gaps around windows
 gaps inner 20 # Low DPI
-gaps outer 9 # Low DPI
-#gaps inner 30 # High DPI
-#gaps outer 25 # High DPI
+gaps outer 25 # Low DPI
 
-# Miscellaneous =====================================================================
-
-
+# ======================================================= #
+# Miscellaneous                                           #
+# ======================================================= #
 # Don't automatically focus on wherever the mouse is
 focus_follows_mouse no
 
 # I don't remember
 smart_borders on
 
-
+# ======================================================= #
+# Binds                                                   #
+# ======================================================= #
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -78,8 +91,6 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 bindsym $mod+v split toggle
-#bindsym $mod+semicolon split h
-#bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -158,5 +169,8 @@ mode "resize" {
 
 bindsym $mod+y mode "resize"
 
+# ======================================================= #
+# Autoexec                                                #
+# ======================================================= #
 exec vmware-user-suid-wrapper
 exec "~/.resources/i3-init.sh"
