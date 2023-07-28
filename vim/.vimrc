@@ -1,21 +1,65 @@
-""""""""""""""""""""""""""""
-" Vundle Plugin Manager    "
-""""""""""""""""""""""""""""
-set nocompatible
-filetype off
+" =========================================================================== "
+" General Configuration "
+" =========================================================================== "
+
+" Ensure we don't use compatibility mode
+set nocompatible                
+" Sets the width of a TAB character's visual appearance
+set tabstop=4
+" Sets the number of spaces used for indentation levels
+set shiftwidth=4                
+" Display line numbers on the left hand side
+set number                      
+" Enable syntax highlighting
+syn on                          
+" Display which line the cursor currently resides on
+set cursorline                  
+" Display line and column numbers at the bottom right of the screen
+set ruler                       
+" Always show the status bar
+set laststatus=2                
+" Always show the current command
+set showcmd                     
+" Enable visual autocomplete for command menu
+set wildmenu                    
+" Ignore compiled files
+set wildignore=*.o,*~,*.pyc     
+" Don't create swap files
+set noswapfile                  
+" Automatically change to the same directory as the file
+set autochdir                   
+" Display tabs with arrows, and spaces with middle dots
+set listchars=tab:>-,space:·
+" Don't wrap lines
+set nowrap                      
+" Always show 10 lines above/below cursor when available
+set scrolloff=10                
+" Always show 20 characters to the right or left of cursor
+set sidescrolloff=20            
+" Search as you type
+set incsearch                   
+" Enable 256 colour mode
+set t_Co=256
+" Enable indentation based on languages
+filetype plugin indent on              
+" Create a column marker for 80 and 100 characters
+set colorcolumn=80,100
+" Suppresses ATTENTION, TAG, and TUTORIAL messages
+set shortmess=atT
+" Update the runtime path to include Vundle
 set rtp+=~/.vim/bundle/Vundle.vim
 
-call vundle#begin()
+" =========================================================================== "
+" Plugin Configuration "
+" =========================================================================== "
 
-" EasyMotion
-Plugin 'Lokaltog/vim-easymotion'
+call vundle#begin()
 
 " Vundle plug-in manager 
 Plugin 'gmarik/Vundle.vim'
 
-" NERDTree file browser
-Plugin 'scrooloose/nerdtree'
-map <C-n> :NERDTreeToggle<CR>
+" EasyMotion
+Plugin 'Lokaltog/vim-easymotion'
 
 " Airline status bar
 Plugin 'bling/vim-airline'
@@ -26,115 +70,44 @@ let g:airline#extensions#whitespace#enabled = 0
 Plugin 'vim-airline/vim-airline-themes'
 let g:airline_theme = 'wombat'
 
-" Fugitive git enhancements
-Plugin 'tpope/vim-fugitive'
-
-" Tagbar class outline viewer
-Plugin 'majutsushi/tagbar'
-nmap <F8> :TagbarToggle<CR>
-
-" CSS for Tagbar
-Plugin 'mtscout6/vim-tagbar-css'
-
-" NERD Commenter
-Plugin 'scrooloose/nerdcommenter'
-
 " Indent Guides
 Plugin 'nathanaelkane/vim-indent-guides'
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size  = 1
-
-Plugin 'dense-analysis/ale'
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
-"let g:ale_open_list = 1
-highlight ALEWarning ctermbg=none cterm=underline
-"let g:ale_set_highlights=0
+autocmd BufReadPre,FileReadPre * :IndentGuidesEnable 
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=238
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=240
 
 call vundle#end()            
 
-filetype plugin indent on
-
-""""""""""""""""""""""""""""
-" Generic Configuration    "
-""""""""""""""""""""""""""""
-set nocompatible                " Apparently does nothing when in a .vimrc but just in case!
-set expandtab                   " Pressing TAB will insert four spaces instead of a TAB.
-set tabstop=4                   " How many spaces a TAB will appear to be
-set softtabstop=4               " How many spaces a TAB will be when editing.
-set shiftwidth=4                " How many spaces are used for indentation.
-set number                      " Display line numbers on the left hand side.
-syn on                          " Enable syntax highlighting.
-set cursorline                  " Display which line the cursor currently resides on.
-set ruler                       " Display line and column numbers at the bottom right of the screen.
-set laststatus=2                " Always show the status bar.
-set showcmd                     " Always show the current command.
-set wildmenu                    " Enable visual autocomplete for command menu.
-set wildignore=*.o,*~,*.pyc     " Ignore compiled files.
-set noswapfile                  " Don't create swap files.
-set autochdir                   " Automatically change to the same directory as the file.
-set listchars=tab:>-            " Display tabs with arrows.
-set nowrap                      " Don't wrap lines.
-set scrolloff=10                " Always show 10 lines above/below cursor when available.
-set sidescrolloff=20            " Always show 20 characters to the right or left of cursor.
-set incsearch                   " Search as you type.
-set t_Co=256                    " Enable 256 colour mode
-filetype indent on              " Enable indentation based on languages.
-
-""""""""""""""""""""""""""""
-" Autoexec                 "
-""""""""""""""""""""""""""""
-autocmd BufReadPre,FileReadPre * :IndentGuidesEnable 
-
-""""""""""""""""""""""""""""
+" =========================================================================== "
 " Key Bindings             "
-""""""""""""""""""""""""""""
+" =========================================================================== "
+
 command WQ wq                   " Because vim is pedantic.
 command Wq wq                   " You know what I mean, vim :(
 command W w
 command Q q
-let mapleader=","
 
-""""""""""""""""""""""""""""
+" =========================================================================== "
 " Language Specific        "
-""""""""""""""""""""""""""""
-" HTML
-autocmd Filetype html setlocal tabstop=2
-autocmd Filetype html setlocal softtabstop=2
-autocmd Filetype html setlocal shiftwidth=2     
-
-
-" Jade
-autocmd Filetype jade setlocal tabstop=2
-autocmd Filetype jade setlocal softtabstop=2
-autocmd Filetype jade setlocal shiftwidth=2     
-
-" LESS
-autocmd Filetype less setlocal tabstop=2
-autocmd Filetype less setlocal softtabstop=2
-autocmd Filetype less setlocal shiftwidth=2     
-
-" YAML
-autocmd Filetype yaml setlocal tabstop=2
-autocmd Filetype yaml setlocal softtabstop=2
-autocmd Filetype yaml setlocal shiftwidth=2     
-
-" Ruby
-autocmd Filetype ruby setlocal tabstop=2
-autocmd Filetype ruby setlocal softtabstop=2
-autocmd Filetype ruby setlocal shiftwidth=2     
+" =========================================================================== "
 
 " Python
-autocmd Filetype python setlocal list!            " Display tabs clearly in Python
+autocmd Filetype python setlocal list!
 
-""""""""""""""""""""""""""""
+" =========================================================================== "
 " Colour Groups            "
-""""""""""""""""""""""""""""
-colorscheme default
+" =========================================================================== "
+
+" Set the colour of the column market to a light grey
+highlight ColorColumn ctermbg=240 guibg=lightgray
+" Set the foreground color of line numbers to Yellow
 highlight LineNr ctermfg=Yellow
+" Set the foreground color of the current line number to White
 highlight CursorLineNr ctermfg=White
+" Set the foreground color of statements to Yellow
 highlight Statement ctermfg=Yellow
+" Set the background color of folded lines to light grey and foreground color to 251
 highlight Folded ctermbg=240 ctermfg=251
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=238
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=240
