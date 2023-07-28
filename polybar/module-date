@@ -1,0 +1,29 @@
+# =========================================================================== #
+# Module: Date                                                                #
+# =========================================================================== #
+
+[module/date]
+type = internal/date
+
+# Module Specific
+date = "%A, %d %B %Y"
+time-alt = %I:%M:%S %p
+time = %H:%M:%S
+label = %date%
+interval = 60
+
+# Prefix
+format-prefix = ""
+#format-prefix = "date"
+format-prefix-foreground = ${colors.pastel-yellow}
+format-prefix-background = ${colors.background}
+format-prefix-padding    = 1
+
+# Value
+format-background = ${colors.background}
+format-foreground = ${colors.pastel-yellow}
+format-overline   = ${colors.overline}
+format-underline  = ${colors.underline}
+format-padding = 0
+
+

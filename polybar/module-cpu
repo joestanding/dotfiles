@@ -1,0 +1,27 @@
+[module/cpu]
+type = internal/cpu
+format = <label> <bar-load>
+label = ""
+label-font=7
+
+format-prefix = ""
+format-prefix-foreground = ${colors.pastel-pink}
+format-prefix-padding    = 1
+
+format-overline         = ${colors.overline}
+format-underline        = ${colors.underline}
+
+bar-load-width = 14
+bar-load-foreground-0 = ${colors.bar-used}
+bar-load-foreground-1 = ${colors.bar-used}
+bar-load-foreground-2 = #fba922
+bar-load-foreground-3 = #ff5555
+bar-load-indicator = |
+bar-load-indicator-font = 6
+bar-load-indicator-foreground = ${colors.pastel-pink}
+bar-load-fill = ─
+bar-load-fill-font = 6
+bar-load-empty = ─
+bar-load-empty-font = 6
+bar-load-empty-foreground = #444444
+

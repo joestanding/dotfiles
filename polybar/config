@@ -12,319 +12,80 @@
 #    \__|                     \______/                               
 #
 
-# ======================================================= #
-# Colours                                                 #
-# ======================================================= #
+# =========================================================================== #
+# Colours                                                                     #
+# =========================================================================== #
+
 [colors]
-background          = #020C0D
-foreground          = #E0E0E0
-icon                = #999999
-underline           = ${colors.icon}
 
-primary             = #ffb52a
-secondary           = #e60053
-alert               = #bd2c40
+background      = #1a1a1a
+foreground      = #FFFBF6
 
-bar-used            = #ea80fc
+module-background   = #e1e1e1
+module-foreground   = #1c1c1c
 
-# ======================================================= #
-# Main Polybar Config                                     #
-# ======================================================= #
-[bar/mint]
-background          = ${colors.background}
-foreground          = ${colors.foreground}
+pastel-red      = #ac4142
+pastel-green    = #a6e29f
+pastel-yellow   = #f8dd9b
+pastel-blue     = #6a9fb5
+pastel-purple   = #aa759f
+pastel-cyan     = #75b5aa
+pastel-white    = #d0d0d0
+pastel-orange   = #fab387
+pastel-pink     = #eba0ac
+pastel-pink2    = #f38ba8
 
-font-0              = xos4 Terminus:size=12
-font-1              = FontAwesome:size=8;1
-font-2              = FontAwesome:size=8;-2
-font-3              = NotoSans-Regular:size=8;-1
-font-4              = MaterialIcons:size=10;-1
-font-5              = Termsynu:size=8:antialias=false;0
+underline       = ${colors.background}
+overline        = ${colors.background}
 
-bottom              = false
-underline-size      = 0
-overline-size       = 0
+# =========================================================================== #
+# Bars                                                                        #
+# =========================================================================== #
 
-fixed-center        = true
+[bar/default]
 
-width               = 100%
-height              = 33
+background = ${colors.background}
+foreground = ${colors.foreground}
 
-module-margin-right = 3
+# Fonts
+font-0 = "Inconsolata:size=12:weight=bold;2"
+font-1 = "Font Awesome 6 Free;2"
+font-2 = "Font Awesome 6 Free Solid;2"
 
-modules-left        = i3
-modules-right       = eth0 eth1 tap0 extip cpu-bar memory-bar filesystem battery-bar date
+# Bar Size
+width  = 100%
+height = 42
 
-wm-restack          = i3
+# Border
+border-top-size   = 10
+border-left-size  = 10
+border-right-size = 10
+radius = 10
 
-cursor-click        = pointer
-cursor-scroll       = ns-resize
+# Padding
+padding-top   = 5
+padding-left  = 2
+padding-right = 3
+offset-y = 5
 
-padding-left        = 5
-padding-right       = 5
+# Module Configuration
+modules-left  = i3
+modules-right = eth0 cpu ram date time
 
-#border-size        = 10 ; Set this if you want some spacing around the bar.
+# Underline and Overline
+underline-size  = 7
+line-color      = ${colors.background}
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+# Module Margins
+module-margin-left  = 2
 
-[settings]
-screenchange-reload = true
+# =========================================================================== #
+# Module Includes                                                             #
+# =========================================================================== #
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-[global/wm]
-margin-top          = 5
-margin-bottom       = 5
-
-# ======================================================= #
-# Module: i3 Workspace Changer                            #
-# ======================================================= #
-[module/i3]
-format-background = ${colors.background}
-format-foreground = ${colors.foreground}
-format-underline = ${colors.underline}
-format-overline     = ${colors.underline}
-
-type = internal/i3
-format = <label-state> <label-mode>
-index-sort = true
-wrapping-scroll = false
-
-label-mode-padding = 2
-label-mode-foreground = #000
-label-mode-background = ${colors.primary}
-
-; focused = Active workspace on focused monitor
-label-focused =  %name% 
-label-focused-background = ${colors.icon}
-label-focused-foreground = ${colors.background}
-;label-focused-underline = ${colors.icon}
-label-focused-padding = 1
-
-; unfocused = Inactive workspace on any monitor
-label-unfocused = %name%
-label-unfocused-padding = 1
-label-unfocused-background = ${colors.background}
-
-; visible = Active workspace on unfocused monitor
-label-visible = %name%
-;label-visible-background = ${self.label-focused-background}
-;label-visible-underline = ${self.label-focused-underline}
-label-visible-padding = 1
-
-; urgent = Workspace with urgency hint set
-label-urgent = %name%
-label-urgent-padding = 1
-
-# ======================================================= #
-# Module: CPU Bar                                         #
-# ======================================================= #
-[module/cpu-bar]
-type = internal/cpu
-format = <label> <bar-load>
-label =  CPU
-label-font=7
-
-bar-load-width = 10
-bar-load-foreground-0 = ${colors.bar-used}
-bar-load-foreground-1 = ${colors.bar-used}
-bar-load-foreground-2 = #fba922
-bar-load-foreground-3 = #ff5555
-bar-load-indicator = |
-bar-load-indicator-font = 6
-bar-load-indicator-foreground = #ff
-bar-load-fill = ─
-bar-load-fill-font = 6
-bar-load-empty = ─
-bar-load-empty-font = 6
-bar-load-empty-foreground = #444444
-
-# ======================================================= #
-# Module: RAM Bar                                         #
-# ======================================================= #
-[module/memory-bar]
-type = internal/memory
-format = <bar-used> <label>
-format-prefix = " RAM "
-label-font=7
-label =  (%gb_used%)
-label-foreground = ${colors.icon}
-
-bar-used-width = 10
-bar-used-foreground-0 = ${colors.bar-used}
-bar-used-foreground-1 = ${colors.bar-used}
-bar-used-foreground-2 = #fba922
-bar-used-foreground-3 = #ff5555
-bar-used-indicator = |
-bar-used-indicator-font = 6
-bar-used-indicator-foreground = #ff
-bar-used-fill = ─
-bar-used-fill-font = 6
-bar-used-empty = ─
-bar-used-empty-font = 6
-bar-used-empty-foreground = #444444
-
-# ======================================================= #
-# Module: Battery Bar                                     #
-# ======================================================= #
-[module/battery-bar]
-type = internal/battery
-battery = BAT1
-adapter = ACAD
-full-at = 98
-interval = 5
-
-format-charging    =  BAT <bar-capacity> <label-charging>
-label-charging = (%percentage%%)
-
-format-discharging =  BAT <bar-capacity> <label-discharging>
-label-discharging = (%percentage%%)
-
-format-full =  BAT <bar-capacity> <label-full>
-label-full = 
-
-label-charging-foreground = ${colors.icon}
-label-discharging-foreground = ${colors.icon}
-label-full-foreground = ${colors.icon}
-
-bar-capacity-width = 10
-bar-capacity-foreground-0 = ${colors.bar-used}
-bar-capacity-foreground-1 = ${colors.bar-used}
-bar-capacity-foreground-2 = ${colors.bar-used}
-bar-capacity-foreground-3 = ${colors.bar-used}
-bar-capacity-indicator = |
-bar-capacity-indicator-font = 6
-bar-capacity-indicator-foreground = #ff
-bar-capacity-fill = ─
-bar-capacity-fill-font = 6
-bar-capacity-empty = ─
-bar-capacity-empty-font = 6
-bar-capacity-empty-foreground = #444444
-
-# ======================================================= #
-# Module: Filesystem Usage                                #
-# ======================================================= #
-[module/filesystem]
-type = internal/fs
-interval = 25
-mount-0 = /
-
-format-mounted =  HDD <bar-used> <label-mounted>
-label-mounted = "(%free% rem.)"
-label-mounted-foreground = ${colors.icon}
-bar-used-width = 10
-bar-used-foreground-0 = ${colors.bar-used}
-bar-used-foreground-1 = ${colors.bar-used}
-bar-used-foreground-2 = ${colors.bar-used}
-;bar-used-foreground-2 = #fba922
-bar-used-foreground-3 = #ff5555
-bar-used-indicator = |
-bar-used-indicator-font = 6
-bar-used-indicator-foreground = #ff
-bar-used-fill = ─
-bar-used-fill-font = 6
-bar-used-empty = ─
-bar-used-empty-font = 6
-bar-used-empty-foreground = #444444
-
-# ======================================================= #
-# Module: Primary Ethernet IP Address                     #
-# ======================================================= #
-[module/eth0]
-format-background = ${colors.background}
-format-foreground = ${colors.icon}
-format-underline = ${colors.underline}
-format-overline     = ${colors.underline}
-format-padding = 0
-type = internal/network
-interface = ens33
-interval = 3.0
-format-connected-padding = 2
-format-connected-underline = ${colors.underline}
-format-connected-overline = ${colors.underline}
-format-connected-background = ${colors.background}
-format-connected-foreground = ${colors.icon}
-format-connected-prefix = " eth0 "
-format-connected-prefix-foreground = ${colors.foreground}
-label-connected = %local_ip%
-format-disconnected =
-
-# ======================================================= #
-# Module: Secondary Ethernet IP Address                   #
-# ======================================================= #
-[module/eth1]
-format-background = ${colors.background}
-format-foreground = ${colors.foreground}
-format-underline = ${colors.underline}
-format-overline     = ${colors.underline}
-format-padding = 2
-type = internal/network
-interface = eth1
-interval = 3.0
-format-connected-padding = 2
-format-connected-underline = ${colors.underline}
-format-connected-overline = ${colors.underline}
-format-connected-background = ${colors.background}
-format-connected-foreground = ${colors.foreground}
-format-connected-prefix = " eth1 "
-format-connected-prefix-foreground = ${colors.icon}
-label-connected = %local_ip%
-format-disconnected =
-
-# ======================================================= #
-# Module: VPN IP Address                                  #
-# ======================================================= #
-[module/tap0]
-format-background = ${colors.background}
-format-foreground = ${colors.foreground}
-format-underline = ${colors.underline}
-format-overline     = ${colors.underline}
-format-padding = 2
-type = internal/network
-interface = tap0
-interval = 3.0
-format-connected-padding = 2
-format-connected-underline = ${colors.underline}
-format-connected-overline = ${colors.underline}
-format-connected-background = ${colors.background}
-format-connected-foreground = ${colors.foreground}
-format-connected-prefix = " vpn "
-format-connected-prefix-foreground = ${colors.icon}
-label-connected = %local_ip%
-format-disconnected =
-
-# ======================================================= #
-# Module: External IP Address                             #
-# ======================================================= #
-[module/extip]
-type                = custom/script
-interval            = 30
-exec                = python3 ~/.config/polybar/extip
-format              = <label>
-format-background   = ${colors.background}
-format-foreground   = ${colors.icon}
-format-underline    = ${colors.underline}
-format-overline     = ${colors.underline}
-format-padding      = 2
-format-prefix       = " ext "
-format-prefix-foreground = ${colors.foreground}
-
-
-# ======================================================= #
-# Module: Date and Time                                   #
-# ======================================================= #
-[module/date]
-format-background = ${colors.background}
-format-foreground = ${colors.icon}
-format-underline = ${colors.underline}
-format-overline     = ${colors.underline}
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground}
-format-padding = 0
-type = internal/date
-interval = 1
-date-alt = "%A %d %B %Y"
-date = " %Y-%m-%d"
-time-alt = %I:%M:%S %p
-time = %H:%M:%S
-label = %date% %time%
+include-file = module-date
+include-file = module-eth0
+include-file = module-cpu
+include-file = module-ram
+include-file = module-i3-wm
+include-file = module-time

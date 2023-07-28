@@ -1,0 +1,15 @@
+[module/eth0]
+type        = internal/network
+interface   = ens33
+interval    = 3.0
+
+format-connected-prefix                   = ""
+format-connected-prefix-foreground        = ${colors.pastel-pink2}
+#format-connected-prefix-background        = ${colors.pastel-pink2}
+format-connected-prefix-padding           = 1
+
+format-connected-overline       = ${colors.overline}
+format-connected-underline       = ${colors.underline}
+
+label-connected                 = %local_ip%
+format-connected-foreground     = ${colors.pastel-pink2}
