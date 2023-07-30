@@ -2,7 +2,7 @@
 
 setxkbmap gb
 xrdb -load ~/.Xresources
-compton -b -c
+picom -b --experimental-backends --config ~/.config/picom.conf
 feh --bg-scale ~/wallpapers/wallpaper.jpg
-polybar mint &
+polybar &
 xeventbind resolution /home/joe/.resources/udev-resize.sh &
