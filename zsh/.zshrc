@@ -13,8 +13,8 @@
 # History                                                 #    
 # ======================================================= #
 HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=10000
+SAVEHIST=10000
 
 # ======================================================= #    
 # Directory Listing Colours                               #    
@@ -178,6 +178,29 @@ setprompt() {
   PS2=$'%_>'
 }
 setprompt
+
+autoload -Uz vcs_info
+
+# ======================================================= #    
+# Git Information                                         #
+# ======================================================= #
+
+# Commands to be executed, before zsh execs the requested cmd
+precmd_vcs_info() { 
+    vcs_info
+}
+precmd_functions+=( precmd_vcs_info )
+# This enables prompt substitution. 
+setopt prompt_subst
+
+zstyle ':vcs_info:*' check-for-changes false
+zstyle ':vcs_info:*' unstagedstr ' *'
+zstyle ':vcs_info:*' stagedstr ' +'
+# Set the content of the prompt area that appears on the right hand side
+RPROMPT='${vcs_info_msg_0_}'
+# Sets the display format for Git repositories
+#zstyle ':vcs_info:git:*' formats "%c %u %i [${PR_MAGENTA}%b${PR_NO_COLOR}]"
+zstyle ':vcs_info:git:*' formats "[${PR_MAGENTA}%b${PR_NO_COLOR}]"
 
 # ======================================================= #    
 # Plugins                                                 #
