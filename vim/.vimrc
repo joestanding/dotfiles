@@ -4,6 +4,8 @@
 
 " Ensure we don't use compatibility mode
 set nocompatible                
+" Use spaces for tabs
+set expandtab
 " Sets the width of a TAB character's visual appearance
 set tabstop=4
 " Sets the number of spaces used for indentation levels
@@ -29,7 +31,10 @@ set noswapfile
 " Automatically change to the same directory as the file
 set autochdir                   
 " Display tabs with arrows, and spaces with middle dots
-set listchars=tab:>-,space:·
+" Uncomment to show spaces: set listchars=tab:>-,space:·
+set listchars=tab:>-
+" Enable showing of tabs, by default
+set list
 " Don't wrap lines
 set nowrap                      
 " Always show 10 lines above/below cursor when available
@@ -48,6 +53,8 @@ set colorcolumn=80,100
 set shortmess=atT
 " Update the runtime path to include Vundle
 set rtp+=~/.vim/bundle/Vundle.vim
+" Ctrl+L will remove highlighting from search
+nnoremap <silent> <C-l> :nohl<CR>
 
 " =========================================================================== "
 " Plugin Configuration "
@@ -95,6 +102,7 @@ command Q q
 " =========================================================================== "
 
 " Python
+autocmd Filetype python set listchars=tab:>-,space:·
 autocmd Filetype python setlocal list!
 
 " =========================================================================== "
